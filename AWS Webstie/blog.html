@@ -21,7 +21,6 @@
 					<ul>
 						<li><a href="index.html">Home</a></li>
 						<li><a href="blog.html" class="active">Blog</a></li>
-						<li><a href="test.html">Test</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -37,27 +36,25 @@
 							<p> The image above was generated with DALL E using <a href="https://chat.openai.com">Chatgpt</a></p>
 							<p>The idea behind the image was the transition from old to new as business processess are being transitioned to the digital realm.</p>
 								
-								<p><strong>Overview of the Cloud Resume Challenge:</strong> <i>The Cloud Resume Challenge is a project designed to offer hands-on experience with cloud services, specifically Amazon Web Services (AWS), and web development technologies. Participants are tasked with hosting their resume on a website, utilizing HTML, CSS, JavaScript, and Python. This project not only demonstrates technical proficiency but also integrates various AWS services to deploy a fully functional website.</i></p>
-								
-								<p><strong>Key Components and Their Integration:</strong></p>
-								<p><strong>Website Development:</strong> <i>The foundation of the project is the website, crafted using HTML and CSS for structure and styling, respectively. JavaScript is employed to add interactivity, such as dynamically displaying a visitor count. Python, though primarily used in backend processes, plays a crucial role in handling data manipulation and serverless computing tasks.</i></p>
-								
-								<p><strong>AWS S3 Bucket Configuration:</strong> <i>An S3 (Simple Storage Service) bucket on AWS serves as the hosting platform for the website. This choice offers scalability, reliability, and accessibility, making it an ideal solution for static website hosting.</i></p>
-								
-								<p><strong>Security with CloudFront:</strong> <i>To secure data in transit and enhance website delivery, AWS CloudFront is utilized. This content delivery network (CDN) ensures that communication between the user and the website is encrypted using HTTPS. CloudFront also optimizes content delivery by caching content closer to the user, improving load times and performance.</i></p>
-								
-								<p><strong>Visitor Count Tracking with DynamoDB and Lambda:</strong> <i>A DynamoDB table records the website's view count, demonstrating AWS's NoSQL database capabilities for fast and scalable data management. A Python-based AWS Lambda function triggers upon each website visit, incrementing the view count in the DynamoDB table. This serverless architecture allows for efficient resource use and scalability.</i></p>
-								
-								<p><strong>CI/CD Pipeline:</strong> <i>Continuous integration and continuous deployment (CI/CD) are achieved through a pipeline that automates code updates from the desktop to the S3 bucket. Using YAML scripts for pipeline configuration, this setup ensures that any changes committed to the GitHub repository are automatically deployed to AWS, keeping the website up-to-date.</i></p>
-								
-								<p><strong>Integration with Google Sheets via App Scripts:</strong> <i>To overcome limitations in data collection from website forms, Google Sheets is integrated using Apps Script. This allows for seamless data transfer from website submissions to a spreadsheet, facilitating feedback collection and data analysis without manual intervention.</i></p>
-								
-								<p><strong>How It Works:</strong> <i>When a user visits the website through the CloudFront URL, the S3-hosted website files are served, displaying the resume.
-								JavaScript on the webpage communicates with the AWS Lambda function to fetch and update the view count stored in DynamoDB, showcasing real-time visitor engagement.
-								HTML and CSS define the content and presentation of the website, while the contact form, initially limited by Google Forms, now efficiently sends submissions to Google Sheets via Apps Script.
-								The CI/CD pipeline ensures any changes made to the website's codebase are automatically propagated to the S3 bucket, with CloudFront caching considerations managed through invalidation for immediate content updates.</i></p>
-								
-								<p><strong>Conclusion:</strong> <i>Completing this project provided me with a practical application of cloud computing and web development technologies, showcasing a seamless integration of AWS services, programming languages, and third-party tools. By navigating the complexities of deploying a secure, dynamic website, I've gained invaluable experience in cloud infrastructure, serverless computing, and automated deployment processes, preparing them for future challenges in the tech industry. I am looking forward to exploring Lambda more to process images into a desired resolution. I will keep you all updated.</i></p>
+							<p><strong>Project Overview:</strong> <i>This project showcases the integration of a dynamic, secure, cloud-hosted resume website leveraging a range of AWS services, programming languages, and modern development practices. The core objectives were to ensure cloud-based hosting, enforce HTTPS for security, and feature a real-time view/visitor counter.</i></p>
+    
+							<p><strong>Cloud Services and Technologies Used:</strong></p>
+							<p><strong>AWS Services:</strong> <i>S3, CloudFront, DynamoDB, Lambda, ACM, Route 53, CloudWatch Logs</i></p>
+							<p><strong>Development Tools:</strong> <i>ChatGPT (for script editing), GitHub (for source control and CI/CD)</i></p>
+							<p><strong>Programming Languages:</strong> <i>HTML, CSS, JavaScript, Python</i></p>
+							
+							<p><strong>Implementation Details:</strong></p>
+							<p><strong>Cloud Hosting with AWS S3:</strong> <i>The website's static files, including HTML, CSS, and images, are stored in an AWS S3 bucket configured for web hosting. This setup serves as the backbone for the website's content storage.</i></p>
+							<p><strong>Secure Content Delivery via CloudFront and ACM:</strong> <i>AWS CloudFront, integrated with Origin Access Control, ensures that website files are accessible only through CloudFront. This setup facilitates secure content delivery over HTTPS, augmented with a TLS/SSL certificate provisioned through AWS Certificate Manager (ACM) for the custom domain, ensuring encrypted web traffic.</i></p>
+							<p><strong>Visitor Counter with DynamoDB, Lambda, and JavaScript:</strong> <i>A DynamoDB table was established to track the website's view/visitor count. AWS Lambda, triggered by each website visit, executes a Python script to update the view count in DynamoDB. This data is then retrieved and displayed on the website through JavaScript, providing a live count of site visits.</i></p>
+							<p><strong>Monitoring and Troubleshooting with CloudWatch Logs:</strong> <i>AWS CloudWatch Logs was employed to monitor and log any issues with the Lambda function, facilitating efficient troubleshooting and maintenance of the visitor counter feature.</i></p>
+							<p><strong>Custom Domain Configuration with Route 53:</strong> <i>A custom domain was acquired and configured using AWS Route 53, including setting up a hosted zone and alias records to link the CloudFront distribution with the custom domain, enhancing the website's professional appearance and accessibility.</i></p>
+							<p><strong>Automated Deployment with GitHub and CI/CD:</strong> <i>Source control and continuous integration/continuous deployment (CI/CD) were managed through GitHub. A GitHub repository was linked with AWS S3 via GitHub Actions (defined in a YAML file), automating the deployment process. This setup ensures that updates pushed to GitHub are automatically deployed to the S3 bucket, keeping the website content up to date.</i></p>
+							<p><strong>Cache Invalidation for Immediate Updates:</strong> <i>Given CloudFront's caching mechanism for efficient content delivery, cache invalidation processes were implemented. This step ensures that content updates are immediately visible to website visitors, bypassing the cached data at edge locations.</i></p>
+							
+							<p><strong>Project Reflections:</strong> <i>This project provided comprehensive hands-on experience with AWS cloud services, highlighting the practical application of cloud technologies in deploying and managing a secure, scalable web solution. The integration of various AWS services, alongside programming in HTML, CSS, JavaScript, and Python, offered a deep dive into web development and cloud infrastructure management. It underlines the transformation of code from development to global distribution, emphasizing the power of cloud computing in modern web development.</i></p>
+							
+							<p><i>I look forward to engaging in further projects, enhancing my skillset, and contributing to innovative solutions that add significant value.</i></p>
 							
 						</div>
 					</section>
