@@ -187,7 +187,38 @@
 				}
 			});
 
-// JavaScript Code
+			
+			// Transelator code
+			document.getElementById('languageSelect').addEventListener('change', function() {
+				const targetLang = this.value;
+				const elementsToTranslate = document.querySelectorAll('[data-translate="true"]');
+			  
+				elementsToTranslate.forEach(element => {
+				  const text = element.innerText;
+			  
+				  // Call the API Gateway endpoint with the text and target language
+				  fetch('https://ad9n6nnmcf.execute-api.us-east-1.amazonaws.com/dev/translate ', {
+					method: 'POST',
+					headers: {
+					  'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+					  text: text,
+					  targetLang: targetLang,
+					}),
+				  })
+				  .then(response => response.json())
+				  .then(data => {
+					// Update the text of the element with the translated text
+					element.innerText = data.translatedText;
+				  })
+				  .catch(error => console.error('Error translating text:', error));
+				});
+			  });
+			  
+
+
+// Website counter Code
 const counter = document.querySelector(".counter-number");
 async function updateCounter() {
     let response = await fetch('https://34g7bacvujhuyehqaw3l7m3oja0yclmg.lambda-url.us-east-1.on.aws/');
