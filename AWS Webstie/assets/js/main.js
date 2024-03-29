@@ -188,7 +188,7 @@
 			});		  
 
 
-				// Translation code
+							// Translation code
 document.getElementById('languageSelect').addEventListener('change', function() {
 	const targetLang = this.value;
 	const elementsToTranslate = document.querySelectorAll('[data-translate="true"]');
@@ -215,10 +215,8 @@ document.getElementById('languageSelect').addEventListener('change', function() 
 	  .catch(error => console.error('Error translating text:', error));
 	});
   });
-  
-			  
-
-// Website counter Code
+ 			  
+// Javascript Code
 const counter = document.querySelector(".counter-number");
 async function updateCounter() {
     let response = await fetch('https://34g7bacvujhuyehqaw3l7m3oja0yclmg.lambda-url.us-east-1.on.aws/');
