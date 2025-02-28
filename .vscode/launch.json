@@ -8,7 +8,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Open index.html",
-            "file": "c:\\Users\\Busin\\OneDrive\\Desktop\\aws-cloud-resume\\AWS Webstie\\index.html"
+            "file": "c:\\Users\\Busin\\OneDrive\\Desktop\\aws-cloud-resume\\AWS Website\\index.html"
         }
     ]
 }
