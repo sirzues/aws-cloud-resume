@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects & Selected Work — Mahesh Harripaul</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom animations and transitions */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        /* Smooth transitions for interactive elements */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -10px rgba(6, 182, 212, 0.15);
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom dark theme colors */
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --accent: #06b6d4;
+            --border: rgba(148, 163, 184, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-[#0f172a] text-slate-100 antialiased">
+    
+    <!-- Header Section -->
+    <header class="sticky top-0 z-50 bg-[#0f172a]/95 backdrop-blur-sm border-b border-slate-800/50">
+        <div class="max-w-6xl mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <a href="index.html" class="block">
+                        <h1 class="text-2xl md:text-3xl font-bold text-slate-100">Mahesh Harripaul</h1>
+                        <p class="text-sm md:text-base text-slate-400 mt-1">Security Automation & Cloud Systems Engineer</p>
+                    </a>
+                </div>
+                <nav class="flex flex-wrap gap-6 text-sm md:text-base">
+                    <a href="index.html#what-i-build" class="text-slate-400 hover:text-cyan-400 transition-colors border-b border-transparent hover:border-cyan-400/30 pb-1">What I Build</a>
+                    <a href="projects.html" class="text-cyan-400 border-b border-cyan-400/30 pb-1">Projects</a>
+                    <a href="index.html#contact" class="text-slate-400 hover:text-cyan-400 transition-colors border-b border-transparent hover:border-cyan-400/30 pb-1">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Projects Page Header -->
+    <section class="py-20 px-4 pt-32">
+        <div class="max-w-4xl mx-auto text-center fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-100 mb-6">
+                Projects & Selected Work
+            </h1>
+            <p class="text-lg md:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
+                A collection of systems I've designed and implemented to solve real operational and security problems.
+            </p>
+        </div>
+    </section>
+
+    <!-- Projects List -->
+    <section class="py-12 px-4 pb-20">
+        <div class="max-w-4xl mx-auto space-y-16">
+            
+            <!-- Project 1: Automated IP Reputation Classification -->
+            <article class="fade-in">
+                <div class="border border-slate-700/50 rounded-lg overflow-hidden hover:border-cyan-500/30 transition-colors bg-[#1e293b]/30">
+                    <!-- Project Image Placeholder -->
+                    <div class="bg-slate-800/50 h-64 flex items-center justify-center">
+                        <span class="text-slate-500 text-sm">Image placeholder: /assets/projects/ip-automation.png</span>
+                    </div>
+                    <div class="p-8">
+                        <h2 class="text-3xl font-bold text-slate-100 mb-4">Automated IP Reputation Classification</h2>
+                        <p class="text-slate-300 leading-relaxed text-lg mb-4">
+                            Built an automated workflow to process IP addresses in controlled batches, classify them as malicious or clean using reputation data, and prepare results for reporting while respecting API limits.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">Security Automation</span>
+                            <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">Cloud</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 2: Authentication Monitoring & Alerts -->
+            <article class="fade-in">
+                <div class="border border-slate-700/50 rounded-lg overflow-hidden hover:border-cyan-500/30 transition-colors bg-[#1e293b]/30">
+                    <!-- Project Image Placeholder -->
+                    <div class="bg-slate-800/50 h-64 flex items-center justify-center">
+                        <span class="text-slate-500 text-sm">Image placeholder: /assets/projects/auth-monitoring.png</span>
+                    </div>
+                    <div class="p-8">
+                        <h2 class="text-3xl font-bold text-slate-100 mb-4">Authentication Monitoring & Alerts</h2>
+                        <p class="text-slate-300 leading-relaxed text-lg mb-4">
+                            Implemented monitoring to detect abnormal sign-in behavior, including repeated failed login attempts, and generate alerts to support faster response.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">Security Automation</span>
+                            <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">Monitoring</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 3: Process & Data Systems -->
+            <article class="fade-in">
+                <div class="border border-slate-700/50 rounded-lg overflow-hidden hover:border-cyan-500/30 transition-colors bg-[#1e293b]/30">
+                    <!-- Project Image Placeholder -->
+                    <div class="bg-slate-800/50 h-64 flex items-center justify-center">
+                        <span class="text-slate-500 text-sm">Image placeholder: /assets/projects/data-systems.png</span>
+                    </div>
+                    <div class="p-8">
+                        <h2 class="text-3xl font-bold text-slate-100 mb-4">Process & Data Systems</h2>
+                        <p class="text-slate-300 leading-relaxed text-lg mb-4">
+                            Designed spreadsheet-based systems to improve accounting visibility, projections, and follow-ups by enforcing structured, consistent data.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">Data & Process Design</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="bg-[#0a0f1a] border-t border-slate-800/50">
+        <div class="max-w-6xl mx-auto px-4 py-12">
+            <!-- Main Footer Content -->
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <!-- Left Column: Name + Role -->
+                <div class="text-center md:text-left">
+                    <h3 class="text-xl font-bold text-slate-100 mb-2">Mahesh Harripaul</h3>
+                    <p class="text-sm text-slate-400">Security Automation & Cloud Systems Engineer</p>
+                </div>
+                
+                <!-- Center Column: Links -->
+                <div class="flex flex-col md:flex-row md:justify-center gap-4 text-center md:text-left">
+                    <a href="index.html#what-i-build" class="text-slate-400 hover:text-cyan-400 transition-colors text-sm">What I Build</a>
+                    <a href="projects.html" class="text-slate-400 hover:text-cyan-400 transition-colors text-sm">Projects</a>
+                    <a href="index.html#contact" class="text-slate-400 hover:text-cyan-400 transition-colors text-sm">Contact</a>
+                    <a href="https://www.linkedin.com/in/mahesh-harripaul-889496220/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-cyan-400 transition-colors text-sm">LinkedIn</a>
+                </div>
+            </div>
+            
+            <!-- Certifications Section (Trust Badges) -->
+            <div class="border-t border-slate-800/50 pt-8">
+                <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6 opacity-80">
+                    <!-- Credly Badge Embeds -->
+                    <div data-iframe-width="120" data-iframe-height="220" data-share-badge-id="1c16795f-6161-442a-878f-af92d4712b90" data-share-badge-host="https://www.credly.com"></div>
+                    <div data-iframe-width="120" data-iframe-height="220" data-share-badge-id="205f8b48-e9cb-42af-b350-0e443286ee84" data-share-badge-host="https://www.credly.com"></div>
+                    <div data-iframe-width="120" data-iframe-height="220" data-share-badge-id="6fada7bc-d08c-47ca-b599-d18c03e6eb3a" data-share-badge-host="https://www.credly.com"></div>
+                    <div data-iframe-width="120" data-iframe-height="220" data-share-badge-id="4ec83aee-0af0-4c3d-8519-6738835f8958" data-share-badge-host="https://www.credly.com"></div>
+                    <div data-iframe-width="120" data-iframe-height="220" data-share-badge-id="9169ce35-8caf-4497-a693-1c287cbdd72c" data-share-badge-host="https://www.credly.com"></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Credly Embed Script - placed just before closing body tag -->
+    <script async src="https://cdn.credly.com/assets/utilities/embed.js"></script>
+</body>
+</html>
+

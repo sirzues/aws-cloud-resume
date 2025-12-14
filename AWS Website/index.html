@@ -1,184 +1,187 @@
-<!DOCTYPE HTML>
-<!--
-	Hyperspace by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Mahesh-AWS-Resume</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahesh Harripaul — Security & Automation Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom animations and transitions */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        /* Smooth transitions for interactive elements */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -10px rgba(6, 182, 212, 0.15);
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom dark theme colors */
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --accent: #06b6d4;
+            --border: rgba(148, 163, 184, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-[#0f172a] text-slate-100 antialiased">
+    
+    <!-- Header Section -->
+    <header class="sticky top-0 z-50 bg-[#0f172a]/95 backdrop-blur-sm border-b border-slate-800/50">
+        <div class="max-w-6xl mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <a href="index.html" class="block">
+                        <h1 class="text-2xl md:text-3xl font-bold text-slate-100">Mahesh Harripaul</h1>
+                        <p class="text-sm md:text-base text-slate-400 mt-1">Security Automation & Cloud Systems Engineer</p>
+                    </a>
+                </div>
+                <nav class="flex flex-wrap gap-6 text-sm md:text-base">
+                    <a href="#what-i-build" class="text-slate-400 hover:text-cyan-400 transition-colors border-b border-transparent hover:border-cyan-400/30 pb-1">What I Build</a>
+                    <a href="projects.html" class="text-slate-400 hover:text-cyan-400 transition-colors border-b border-transparent hover:border-cyan-400/30 pb-1">Projects</a>
+                    <a href="#contact" class="text-slate-400 hover:text-cyan-400 transition-colors border-b border-transparent hover:border-cyan-400/30 pb-1">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 1️⃣ Positioning Section — "Who I Am" -->
+    <section id="home" class="min-h-screen flex items-center justify-center px-4 py-20 pt-32">
+        <div class="max-w-3xl mx-auto text-center fade-in">
+            <div class="space-y-6 text-lg md:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
+                <p class="text-slate-100 font-medium">
+                    Hi, my name is Mahesh.
+                </p>
+                <p>
+                    I work at the intersection of security, automation, and cloud systems. My approach is outcome-driven — when the objective is clear, I focus on designing and implementing the system needed to reach it.
+                </p>
+                <p>
+                    I enjoy solving real problems: reducing manual processes, enforcing security controls through automation, and connecting systems so they work together reliably.
+                </p>
+                <p>
+                    My strength is figuring things out under constraints — API limits, incomplete data, imperfect tooling — and still delivering solutions that are usable, maintainable, and effective.
+                </p>
+                <p class="pt-4">
+                    <a href="projects.html" class="text-cyan-400 hover:text-cyan-300 transition-all inline-flex items-center gap-2 group">
+                        <span class="group-hover:translate-x-1 transition-transform">→</span>
+                        <span class="border-b border-transparent group-hover:border-cyan-400/50 transition-all group-hover:translate-x-0.5 inline-block">Check out what I've worked on</span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </section>
 
-		<!-- Sidebar -->
-			<section id="sidebar">
-				<div class="inner">
-					<nav>
-						<ul>
-							<li><a href="#intro">Welcome</a></li>
-							<li><a href="#one">Education</a></li>
-							<li><a href="#two">Experience</a></li>
-							<li><a href="#three">Projects</a></li>
-						</ul>
-					</nav>
-				</div>
-			</section>
+    <!-- 2️⃣ What I Do — "What I Build" -->
+    <section id="what-i-build" class="py-20 px-4 bg-[#1e293b]/30">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-slate-100 mb-12 text-center">
+                What I Build
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- Card 1: Security Automation -->
+                <div class="bg-[#1e293b] rounded-lg p-8 border border-slate-700/50 card-hover">
+                    <div class="text-4xl mb-4">🛡️</div>
+                    <h3 class="text-2xl font-bold text-slate-100 mb-4">Security Automation</h3>
+                    <p class="text-slate-300 leading-relaxed">
+                        I automate security workflows that turn raw signals into action — classifying IP activity, detecting abnormal authentication behavior, and generating alerts that reduce manual review.
+                    </p>
+                </div>
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+                <!-- Card 2: Cloud & Systems Implementation -->
+                <div class="bg-[#1e293b] rounded-lg p-8 border border-slate-700/50 card-hover">
+                    <div class="text-4xl mb-4">☁️</div>
+                    <h3 class="text-2xl font-bold text-slate-100 mb-4">Cloud & Systems Implementation</h3>
+                    <p class="text-slate-300 leading-relaxed">
+                        I use cloud services to monitor activity, enforce controls, and design systems that respond automatically to security events instead of relying on constant manual intervention.
+                    </p>
+                </div>
 
-				<!-- Intro -->
-					<section id="intro" class="wrapper style1 fullscreen fade-up">
-						<div class="inner">
-								<h1>This website was <span class="counter-number">viewed</span> times.</h1>
-								<p>This website was created as part of the AWS Cloud Resume challenge. Last updated April 2025.</p>
-								<p> AWS-certified admin currently working as a SOC Analyst. I have experience with python, process mapping, data analysis, and my goal is to use these skills and the AWS cloud to automate processes and workflows.  
-									I am currently studying cybersecurity for the CompTIA Security+ certification, which is improving my knowledge of cybersecurity operations and best be practices. 
-									I also have a strong foundation in general business management.</p>
-					<ul class="actions">
-								<li><a href="blog.html" class="button">About this Site</a></li>
-							</ul>
-						</div>
-					</section>
+                <!-- Card 3: Data & Process Design -->
+                <div class="bg-[#1e293b] rounded-lg p-8 border border-slate-700/50 card-hover">
+                    <div class="text-4xl mb-4">📊</div>
+                    <h3 class="text-2xl font-bold text-slate-100 mb-4">Data & Process Design</h3>
+                    <p class="text-slate-300 leading-relaxed">
+                        I design structured data and spreadsheet-based systems to improve visibility, projections, and follow-ups — turning raw information into something teams can actually use.
+                    </p>
+                </div>
 
-				<!-- One -->
-					<section id="one" class="wrapper style2 spotlights">
-						<section>
-							<div class="content">
-								<div class="inner">
-									<h2>Certifications</h2>
-									<ul>
-										<li>
-											<a> CompTIA security+ sy0-701 (Currently Pursuing) </a>
-										  </li>
-										<li>
-										  <a href="https://www.credly.com/badges/6fada7bc-d08c-47ca-b599-d18c03e6eb3a/public_url" target="_blank" rel="noopener noreferrer">
-											2024: AWS Certified SysOps Administrator – Associate
-										  </a>
-										</li>
-										<li>
-										  <a href="https://www.credly.com/badges/4ec83aee-0af0-4c3d-8519-6738835f8958/public_url" target="_blank" rel="noopener noreferrer">
-											2024: AWS Certified Solutions Architect – Associate
-										  </a>
-										</li>
-										<li>
-										  <a href="https://learn.microsoft.com/en-us/users/maheshharripaul-1048/credentials/9edeeae98dacf0da" target="_blank" rel="noopener noreferrer">
-											2024: Microsoft Certified: Azure Fundamentals
-										  </a>
-										</li>
-										<li>
-										  <a href="https://www.credly.com/badges/9169ce35-8caf-4497-a693-1c287cbdd72c/public_url" target="_blank" rel="noopener noreferrer">
-											2023: AWS Certified Cloud Practitioner
-										  </a>
-										</li>
-									  </ul>
-									  <h2>Education</h2>
-      								<ul>
-										<li>2021: ABE Level 6 Diploma in Business Management</li>
-										<li>2018: ABE Level 5 Diploma in Business Management</li>
-										<li>2016: ABE Level 4 Diploma in Business Management</li>
-      								</ul>
-								</div>
-							</div>
-						</section>
-					</section>
+            </div>
+        </div>
+    </section>
 
-				<!-- Two -->
-					<section id="two" class="wrapper style3 fade-up">
-						<div class="inner">
-							<h2>Experience</h2>
-							
-							<article>
-								<h3>Precision Cyber Technologies and Digital Solutions</h3>
-								<p><strong>SOC Analyst 1</strong> (January 2025 – Present)</p>
-								<ul>
-								  <li>Monitor and analyze security alerts using SIEM.</li>
-								  <li>Monitor and triage security alerts to detect potential threats.</li>
-								  <li>Analyze network and system logs to identify indicators of compromise.</li>
-								  <li>Respond to security incidents and document findings for mitigation.</li>
-								</ul>
-							  </article>
-							
-							  <article>
-								<h3>PBS Technologies Ltd</h3>
-								<p><strong>NOC Tech/0365 Admin</strong> (June 2023 – December 2024)</p>
-								<ul>
-								  <li>Monitored and troubleshot network performance, ensuring system uptime. </li>
-								  <li>Diagnosed and resolved connectivity issues by coordinating with stakeholders.</li>
-								  <li>Administered Office 365, managing users, security policies, and configurations.</li>
-								</ul>
-							  </article>
-							
-							  <article>
-								<h3>Small Business Owner: Online Store & Business Consultant</h3>
-								<p>(May 2022 – June 2023)</p>
-								<ul>
-								  <li>Managed an online retail store, overseeing supply chain, marketing, and customer service.</li>
-								  <li>Provided business registration and consulting services, assisting clients with legal compliance, business process development, and financial planning.</li>
-								</ul>
-							  </article>
-							
-							  <article>
-								<h3>Medcorp Ltd</h3>
-								<p><strong>Billing Clerk and Collections Officer</strong> (April 2019 – May 2022)</p>
-								<ul>
-								  <li>Reviewed, audited, and processed inpatient and outpatient bills for accuracy.</li>
-								  <li>Resolved billing inquiries by coordinating with patients and service providers.</li>
-								  <li>Administered collections, tracked outstanding payments, and reported insights to senior management.</li>
-								</ul>
-							  </article>																																	
-						</div>		
-					</section>
+    <!-- 4️⃣ Direction — "Where I'm Headed" -->
+    <section class="py-20 px-4">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-slate-100 mb-8">
+                Where I'm Headed
+            </h2>
+            <p class="text-lg md:text-xl text-slate-300 leading-relaxed">
+                I'm continuing to grow toward cloud security and DevSecOps-oriented roles, with a focus on security automation, monitoring, and building systems that embed security into workflows rather than handling it reactively.
+            </p>
+        </div>
+    </section>
 
-				<!-- Three -->
-				<section id="three" class="wrapper style1 fade-up">
-					<div class="inner">
-					  <h2>Projects</h2>
-					  <article>
-					  <ul>
-						<li>Deployed scalable web application infrastructure using Amazon EC2 with Auto Scaling and Application Load Balancers for high availability.</li>
-						<li>Configured Amazon VPC with public/private subnets, NAT Gateway, Bastion Host, and secured private EC2 instances with controlled internet access.</li>
-						<li>Automated backend processes using AWS Lambda integrated with DynamoDB for data storage and SES for email notifications on S3 uploads.</li>
-						<li>Implemented IAM roles and policies for secure service-to-service communication within AWS environments.</li>
-						<li>Hosted static websites on Amazon S3 with Route 53 DNS configuration and SSL certificate management via AWS Certificate Manager (ACM).</li>
-						<li>Applied security best practices using Security Groups, Network ACLs, and CloudWatch monitoring for operational insights.</li>
-						
-					  </ul>
-					</article>
-					<ul class="actions">
-						<li><a href="https://mahesh-pdf-resume.s3.us-east-1.amazonaws.com/Mahesh+Harripaul+Resume.pdf" class="button" download="My_Resume_Mahesh.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a></li>
-					</ul> 
-					</div>
-				  </section>
+    <!-- 5️⃣ Footer / Contact -->
+    <footer id="contact" class="bg-[#0a0f1a] border-t border-slate-800/50">
+        <div class="max-w-6xl mx-auto px-4 py-12">
+            <!-- Main Footer Content -->
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <!-- Left Column: Name + Role -->
+                <div class="text-center md:text-left">
+                    <h3 class="text-xl font-bold text-slate-100 mb-2">Mahesh Harripaul</h3>
+                    <p class="text-sm text-slate-400">Security Automation & Cloud Systems Engineer</p>
+                </div>
+                
+                <!-- Center Column: Links -->
+                <div class="flex flex-col md:flex-row md:justify-center gap-4 text-center md:text-left">
+                    <a href="#what-i-build" class="text-slate-400 hover:text-cyan-400 transition-colors text-sm">What I Build</a>
+                    <a href="projects.html" class="text-slate-400 hover:text-cyan-400 transition-colors text-sm">Projects</a>
+                    <a href="#contact" class="text-slate-400 hover:text-cyan-400 transition-colors text-sm">Contact</a>
+                    <a href="https://www.linkedin.com/in/mahesh-harripaul-889496220/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-cyan-400 transition-colors text-sm">LinkedIn</a>
+                </div>
+            </div>
+            
+            <!-- Certifications Section (Trust Badges) -->
+            <div class="border-t border-slate-800/50 pt-8">
+                <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6 opacity-80">
+                    <!-- Credly Badge Embeds -->
+                    <div data-iframe-width="120" data-iframe-height="220" data-share-badge-id="1c16795f-6161-442a-878f-af92d4712b90" data-share-badge-host="https://www.credly.com"></div>
+                    <div data-iframe-width="120" data-iframe-height="220" data-share-badge-id="205f8b48-e9cb-42af-b350-0e443286ee84" data-share-badge-host="https://www.credly.com"></div>
+                    <div data-iframe-width="120" data-iframe-height="220" data-share-badge-id="6fada7bc-d08c-47ca-b599-d18c03e6eb3a" data-share-badge-host="https://www.credly.com"></div>
+                    <div data-iframe-width="120" data-iframe-height="220" data-share-badge-id="4ec83aee-0af0-4c3d-8519-6738835f8958" data-share-badge-host="https://www.credly.com"></div>
+                    <div data-iframe-width="120" data-iframe-height="220" data-share-badge-id="9169ce35-8caf-4497-a693-1c287cbdd72c" data-share-badge-host="https://www.credly.com"></div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-		<!-- Footer -->
-			<footer id="footer" class="wrapper style1-alt">
-				<div class="inner">
-					<ul class="menu">
-						<li>&copy; Mahesh. All rights reserved.</li>
-					</ul>
-					<ul class="icons">
-						<li>
-						  <a href="https://www.linkedin.com/in/mahesh-harripaul-889496220" target="_blank" rel="noopener noreferrer" class="icon brands fa-linkedin-in">
-							<span class="label">LinkedIn</span>
-						  </a>
-						</li>
-					  </ul>
-				</div>
-			</footer>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+    <!-- Credly Embed Script - placed just before closing body tag -->
+    <script async src="https://cdn.credly.com/assets/utilities/embed.js"></script>
+</body>
 </html>
+
