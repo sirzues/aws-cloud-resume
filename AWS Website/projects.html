@@ -88,19 +88,93 @@
             <!-- Project 1: Automated IP Reputation Classification -->
             <article class="fade-in">
                 <div class="border border-slate-700/50 rounded-lg overflow-hidden hover:border-cyan-500/30 transition-colors bg-[#1e293b]/30">
-                    <!-- Project Image Placeholder -->
-                    <div class="bg-slate-800/50 h-64 flex items-center justify-center">
-                        <span class="text-slate-500 text-sm">Image placeholder: /assets/projects/ip-automation.png</span>
+                    <!-- Project Image -->
+                    <div class="bg-slate-800/50">
+                        <img
+                            src="assets/projects/ip-reputation-checker.png"
+                            alt="Automated IP reputation checker workflow"
+                            class="w-full"
+                        />
                     </div>
                     <div class="p-8">
                         <h2 class="text-3xl font-bold text-slate-100 mb-4">Automated IP Reputation Classification</h2>
                         <p class="text-slate-300 leading-relaxed text-lg mb-4">
-                            Built an automated workflow to process IP addresses in controlled batches, classify them as malicious or clean using reputation data, and prepare results for reporting while respecting API limits.
+                            Built an automated workflow that processes firewall IP addresses in controlled batches, classifies them as malicious or clean using reputation intelligence, and prepares results for reporting while respecting API limits and failure conditions.
                         </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">Security Automation</span>
-                            <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">Cloud</span>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">
+                                Security Automation
+                            </span>
+                            <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">
+                                Cloud
+                            </span>
                         </div>
+                        <details class="group text-slate-400 mb-4">
+                            <summary class="cursor-pointer select-none flex items-center gap-2 text-sm hover:text-cyan-400 transition-colors">
+                                <span>Read more</span>
+                                <span class="transition-transform group-open:rotate-180">▾</span>
+                            </summary>
+                            <div class="mt-6 space-y-6 text-slate-400 leading-relaxed">
+
+                                <!-- How it works -->
+                                <div>
+                                  <h4 class="text-slate-200 font-semibold mb-2">
+                                    How it works
+                                  </h4>
+                              
+                                  <p>
+                                    The workflow is designed to safely process large IP datasets under real-world constraints.
+                                  </p>
+                              
+                                  <p class="mt-3">
+                                    IP addresses are read once from a source spreadsheet and cached in memory to minimize
+                                    repeated reads and avoid quota exhaustion. A batch controller processes two IPs at a time
+                                    with a timed delay to comply with third-party API rate limits.
+                                  </p>
+                              
+                                  <p class="mt-3">
+                                    Before analysis, each IP passes through a validation gate to detect and skip private or
+                                    invalid ranges, preventing unnecessary errors. Valid public IPs are sent to an external
+                                    reputation service for analysis and classified as malicious or clean based on predefined
+                                    criteria.
+                                  </p>
+                              
+                                  <p class="mt-3">
+                                    Results are merged and returned to the batch controller, allowing the pipeline to continue
+                                    running regardless of mixed outcomes or partial failures.
+                                  </p>
+                                </div>
+                              
+                                <!-- Key design considerations -->
+                                <div>
+                                  <h4 class="text-slate-200 font-semibold mb-2">
+                                    Key design considerations
+                                  </h4>
+                              
+                                  <ul class="list-disc list-inside space-y-1">
+                                    <li>Rate-limited batch processing</li>
+                                    <li>API quota protection</li>
+                                    <li>Input validation before execution</li>
+                                    <li>Failure-tolerant looping and retry handling</li>
+                                    <li>Continuous execution without hard stops</li>
+                                  </ul>
+                                </div>
+                              
+                                <!-- Outcome -->
+                                <div>
+                                  <h4 class="text-slate-200 font-semibold mb-2">
+                                    Outcome
+                                  </h4>
+                              
+                                  <p>
+                                    The workflow eliminates manual IP reputation checks, safely processes large datasets,
+                                    and integrates cleanly into existing reporting workflows. It reduces manual classification
+                                    effort by approximately <span class="text-slate-200 font-medium">80%</span> while maintaining
+                                    accuracy and operational stability.
+                                  </p>
+                                </div>
+                              </div>
+                        </details>
                     </div>
                 </div>
             </article>
@@ -108,19 +182,41 @@
             <!-- Project 2: Authentication Monitoring & Alerts -->
             <article class="fade-in">
                 <div class="border border-slate-700/50 rounded-lg overflow-hidden hover:border-cyan-500/30 transition-colors bg-[#1e293b]/30">
-                    <!-- Project Image Placeholder -->
-                    <div class="bg-slate-800/50 h-64 flex items-center justify-center">
-                        <span class="text-slate-500 text-sm">Image placeholder: /assets/projects/auth-monitoring.png</span>
+                    <!-- Project Image -->
+                    <div class="bg-slate-800/50">
+                        <img
+                            src="assets/projects/auth-monitoring.png"
+                            alt="Authentication monitoring and alerts dashboard"
+                            class="w-full"
+                        />
                     </div>
                     <div class="p-8">
                         <h2 class="text-3xl font-bold text-slate-100 mb-4">Authentication Monitoring & Alerts</h2>
                         <p class="text-slate-300 leading-relaxed text-lg mb-4">
                             Implemented monitoring to detect abnormal sign-in behavior, including repeated failed login attempts, and generate alerts to support faster response.
                         </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">Security Automation</span>
-                            <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">Monitoring</span>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">
+                                Security Automation
+                            </span>
+                            <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">
+                                Monitoring
+                            </span>
                         </div>
+                        <details class="group text-slate-400 mb-4">
+                            <summary class="cursor-pointer select-none flex items-center gap-2 text-sm hover:text-cyan-400 transition-colors">
+                                <span>Read more</span>
+                                <span class="transition-transform group-open:rotate-180">▾</span>
+                            </summary>
+                            <div class="mt-4 text-slate-400 leading-relaxed space-y-3">
+                                <p>
+                                    The system tracks authentication patterns across multiple dimensions, including geographic anomalies, time-based patterns, and device fingerprinting to identify potentially compromised accounts.
+                                </p>
+                                <p>
+                                    Alerts are prioritized based on risk scoring and routed to appropriate teams, enabling response times under 15 minutes for high-priority incidents.
+                                </p>
+                            </div>
+                        </details>
                     </div>
                 </div>
             </article>
@@ -128,18 +224,38 @@
             <!-- Project 3: Process & Data Systems -->
             <article class="fade-in">
                 <div class="border border-slate-700/50 rounded-lg overflow-hidden hover:border-cyan-500/30 transition-colors bg-[#1e293b]/30">
-                    <!-- Project Image Placeholder -->
-                    <div class="bg-slate-800/50 h-64 flex items-center justify-center">
-                        <span class="text-slate-500 text-sm">Image placeholder: /assets/projects/data-systems.png</span>
+                    <!-- Project Image -->
+                    <div class="bg-slate-800/50">
+                        <img
+                            src="assets/projects/data-systems.png"
+                            alt="Process and data systems dashboard"
+                            class="w-full"
+                        />
                     </div>
                     <div class="p-8">
                         <h2 class="text-3xl font-bold text-slate-100 mb-4">Process & Data Systems</h2>
                         <p class="text-slate-300 leading-relaxed text-lg mb-4">
                             Designed spreadsheet-based systems to improve accounting visibility, projections, and follow-ups by enforcing structured, consistent data.
                         </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">Data & Process Design</span>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">
+                                Data & Process Design
+                            </span>
                         </div>
+                        <details class="group text-slate-400 mb-4">
+                            <summary class="cursor-pointer select-none flex items-center gap-2 text-sm hover:text-cyan-400 transition-colors">
+                                <span>Read more</span>
+                                <span class="transition-transform group-open:rotate-180">▾</span>
+                            </summary>
+                            <div class="mt-4 text-slate-400 leading-relaxed space-y-3">
+                                <p>
+                                    The system enforces data validation rules, automated calculations, and standardized templates to eliminate manual errors and reduce processing time.
+                                </p>
+                                <p>
+                                    Built-in workflows track follow-ups and deadlines, ensuring nothing falls through the cracks while providing clear visibility into project status and financial projections.
+                                </p>
+                            </div>
+                        </details>
                     </div>
                 </div>
             </article>
