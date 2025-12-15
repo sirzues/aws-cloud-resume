@@ -60,10 +60,13 @@
                         <p class="text-sm md:text-base text-slate-400 mt-1">Security Automation & Cloud Systems Engineer</p>
                     </a>
                 </div>
-                <nav class="flex flex-wrap gap-6 text-sm md:text-base">
+                <nav class="flex flex-wrap items-center gap-6 text-sm md:text-base">
                     <a href="#what-i-build" class="text-slate-400 hover:text-cyan-400 transition-colors border-b border-transparent hover:border-cyan-400/30 pb-1">What I Build</a>
                     <a href="projects.html" class="text-slate-400 hover:text-cyan-400 transition-colors border-b border-transparent hover:border-cyan-400/30 pb-1">Projects</a>
                     <a href="#contact" class="text-slate-400 hover:text-cyan-400 transition-colors border-b border-transparent hover:border-cyan-400/30 pb-1">Contact</a>
+                    <div class="pl-6 border-l border-slate-700/50 text-xs text-slate-500">
+                        Views <span id="view-count" class="text-cyan-400">—</span>
+                    </div>
                 </nav>
             </div>
         </div>
@@ -182,6 +185,31 @@
 
     <!-- Credly Embed Script - placed just before closing body tag -->
     <script async src="https://cdn.credly.com/assets/utilities/embed.js"></script>
+    
+    <!-- View Counter Script -->
+    <script>
+        (function() {
+            const viewCountElement = document.getElementById('view-count');
+            if (!viewCountElement) return;
+            
+            fetch('https://5pb02pernh.execute-api.us-east-1.amazonaws.com/count')
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.json();
+                })
+                .then(data => {
+                    const count = data.count || data.views || data.viewCount || data.total;
+                    if (count !== undefined && count !== null) {
+                        viewCountElement.textContent = count.toLocaleString();
+                    } else {
+                        viewCountElement.textContent = '—';
+                    }
+                })
+                .catch(error => {
+                    viewCountElement.textContent = '—';
+                });
+        })();
+    </script>
 </body>
 </html>
 
