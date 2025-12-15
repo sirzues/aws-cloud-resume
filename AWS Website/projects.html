@@ -179,86 +179,561 @@
                 </div>
             </article>
 
-            <!-- Project 2: Authentication Monitoring & Alerts -->
-            <article class="fade-in">
-                <div class="border border-slate-700/50 rounded-lg overflow-hidden hover:border-cyan-500/30 transition-colors bg-[#1e293b]/30">
-                    <!-- Project Image -->
-                    <div class="bg-slate-800/50">
-                        <img
-                            src="assets/projects/auth-monitoring.png"
-                            alt="Authentication monitoring and alerts dashboard"
-                            class="w-full"
-                        />
-                    </div>
-                    <div class="p-8">
-                        <h2 class="text-3xl font-bold text-slate-100 mb-4">Authentication Monitoring & Alerts</h2>
-                        <p class="text-slate-300 leading-relaxed text-lg mb-4">
-                            Implemented monitoring to detect abnormal sign-in behavior, including repeated failed login attempts, and generate alerts to support faster response.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">
-                                Security Automation
-                            </span>
-                            <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">
-                                Monitoring
-                            </span>
-                        </div>
-                        <details class="group text-slate-400 mb-4">
-                            <summary class="cursor-pointer select-none flex items-center gap-2 text-sm hover:text-cyan-400 transition-colors">
-                                <span>Read more</span>
-                                <span class="transition-transform group-open:rotate-180">▾</span>
-                            </summary>
-                            <div class="mt-4 text-slate-400 leading-relaxed space-y-3">
-                                <p>
-                                    The system tracks authentication patterns across multiple dimensions, including geographic anomalies, time-based patterns, and device fingerprinting to identify potentially compromised accounts.
-                                </p>
-                                <p>
-                                    Alerts are prioritized based on risk scoring and routed to appropriate teams, enabling response times under 15 minutes for high-priority incidents.
-                                </p>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-            </article>
+            <!-- Project: Organization-Wide AWS Security Alerting Pipeline -->
+<article class="fade-in">
+  <div class="border border-slate-700/50 rounded-lg overflow-hidden hover:border-cyan-500/30 transition-colors bg-[#1e293b]/30">
 
-            <!-- Project 3: Process & Data Systems -->
-            <article class="fade-in">
-                <div class="border border-slate-700/50 rounded-lg overflow-hidden hover:border-cyan-500/30 transition-colors bg-[#1e293b]/30">
-                    <!-- Project Image -->
-                    <div class="bg-slate-800/50">
-                        <img
-                            src="assets/projects/data-systems.png"
-                            alt="Process and data systems dashboard"
-                            class="w-full"
-                        />
-                    </div>
-                    <div class="p-8">
-                        <h2 class="text-3xl font-bold text-slate-100 mb-4">Process & Data Systems</h2>
-                        <p class="text-slate-300 leading-relaxed text-lg mb-4">
-                            Designed spreadsheet-based systems to improve accounting visibility, projections, and follow-ups by enforcing structured, consistent data.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">
-                                Data & Process Design
-                            </span>
-                        </div>
-                        <details class="group text-slate-400 mb-4">
-                            <summary class="cursor-pointer select-none flex items-center gap-2 text-sm hover:text-cyan-400 transition-colors">
-                                <span>Read more</span>
-                                <span class="transition-transform group-open:rotate-180">▾</span>
-                            </summary>
-                            <div class="mt-4 text-slate-400 leading-relaxed space-y-3">
-                                <p>
-                                    The system enforces data validation rules, automated calculations, and standardized templates to eliminate manual errors and reduce processing time.
-                                </p>
-                                <p>
-                                    Built-in workflows track follow-ups and deadlines, ensuring nothing falls through the cracks while providing clear visibility into project status and financial projections.
-                                </p>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-            </article>
+    <!-- Project Image -->
+    <div class="bg-slate-800/50">
+      <img
+        src="assets/projects/aws-alert-pipeline.png"
+        alt="Organization-wide AWS security alerting pipeline architecture"
+        class="w-full h-auto block"
+      />
+    </div>
+
+    <div class="p-8">
+      <h2 class="text-3xl font-bold text-slate-100 mb-4">
+        Organization-Wide AWS Security Alerting Pipeline
+      </h2>
+
+      <!-- Short summary (always visible) -->
+      <p class="text-slate-300 leading-relaxed text-lg mb-3">
+        Built an organization-wide security alerting pipeline that captures high-value AWS
+        security events across all accounts and delivers real-time alerts to a centralized
+        inbox using native AWS services.
+      </p>
+
+      <!-- Tags (always visible) -->
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">
+          Cloud Security
+        </span>
+        <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">
+          Centralized Logging
+        </span>
+        <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">
+          Event-Driven Alerting
+        </span>
+      </div>
+
+      <!-- Expandable details -->
+      <details class="group text-slate-400">
+        <summary class="cursor-pointer select-none flex items-center gap-2 text-sm hover:text-cyan-400 transition-colors">
+          <span>Read more</span>
+          <span class="transition-transform group-open:rotate-180">▾</span>
+        </summary>
+
+        <div class="mt-6 space-y-6 leading-relaxed">
+
+          <!-- What it does -->
+          <div>
+            <h4 class="text-slate-200 font-semibold mb-2">
+              What it does
+            </h4>
+            <p>
+              The pipeline continuously monitors activity across all AWS accounts in an
+              Organization and surfaces security-relevant events in near real time.
+            </p>
+            <p class="mt-3">
+              It collects organization-level CloudTrail events, filters for high-signal
+              security actions (such as console logins and identity changes), transforms raw
+              logs into readable alerts, and delivers them directly to email via SNS.
+            </p>
+          </div>
+
+          <!-- How it works -->
+          <div>
+            <h4 class="text-slate-200 font-semibold mb-2">
+              How it works
+            </h4>
+            <p>
+              An organization-level CloudTrail trail captures management events from all
+              member accounts and writes them to a centralized CloudWatch Log Group.
+            </p>
+            <p class="mt-3">
+              A CloudWatch Logs subscription filter applies keyword-based filtering and
+              forwards only security-relevant events to a Lambda function. A custom filter
+              pattern is used to reduce noise and ensure only high-value events are processed.
+            </p>
+            <p class="mt-3">
+              The Lambda function parses CloudTrail JSON logs, extracts key fields, builds a
+              structured alert with a dynamic subject and message body, and publishes the
+              result to an SNS topic.
+            </p>
+            <p class="mt-3">
+              SNS then delivers the alert to subscribed recipients, such as a security team
+              inbox.
+            </p>
+          </div>
+
+          <!-- Key components -->
+          <div>
+            <h4 class="text-slate-200 font-semibold mb-2">
+              Key components
+            </h4>
+            <ul class="list-disc list-inside space-y-1">
+              <li>AWS Organizations – Centralized governance and organization-wide visibility</li>
+              <li>CloudTrail (Org Trail) – Captures management events from all accounts</li>
+              <li>CloudWatch Logs – Centralized log storage</li>
+              <li>Subscription Filter + Filter Pattern – Denoises logs and isolates high-value events</li>
+              <li>Lambda – Transforms raw logs into structured, readable alerts</li>
+              <li>SNS – Delivers alerts to email subscribers in real time</li>
+            </ul>
+          </div>
+
+          <!-- Outcome -->
+          <div>
+            <h4 class="text-slate-200 font-semibold mb-2">
+              Outcome
+            </h4>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Centralized visibility into security-relevant activity across all accounts</li>
+              <li>Real-time alerts without manual log review</li>
+              <li>Reduced noise compared to raw CloudTrail logs</li>
+              <li>Readable, actionable notifications delivered directly to inbox</li>
+            </ul>
+          </div>
+
+          <!-- Why it matters -->
+          <div>
+            <h4 class="text-slate-200 font-semibold mb-2">
+              Why it matters
+            </h4>
+            <p>
+              In multi-account AWS environments, visibility is critical. This project
+              demonstrates how native AWS services can be combined to build a scalable,
+              organization-wide security monitoring pipeline that prioritizes signal over
+              noise and delivers actionable insight without relying on third-party tooling.
+            </p>
+          </div>
+
+        </div>
+      </details>
+    </div>
+
+  </div>
+</article>
+
+
+           <!-- Project: Login Failure Burst Detection (AWS) -->
+<article class="fade-in">
+  <div class="border border-slate-700/50 rounded-lg overflow-hidden hover:border-cyan-500/30 transition-colors bg-[#1e293b]/30">
+
+    <!-- Project Image -->
+    <div class="bg-slate-800/50">
+      <img
+        src="assets/projects/login-failure-bursts-detection.png"
+        alt="Login failure burst detection pipeline in AWS"
+        class="w-full h-auto block"
+      />
+    </div>
+
+    <div class="p-8">
+      <h2 class="text-3xl font-bold text-slate-100 mb-4">
+        Login Failure Burst Detection (AWS)
+      </h2>
+
+      <!-- Short summary (always visible) -->
+      <p class="text-slate-300 leading-relaxed text-lg mb-3">
+        Built a real-time detection pipeline that identifies suspicious login failure bursts
+        across an AWS environment and automatically sends alerts when predefined thresholds
+        are exceeded.
+      </p>
+
+      <!-- Tags (always visible) -->
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">
+          Cloud Security
+        </span>
+        <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">
+          Behavioral Detection
+        </span>
+        <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">
+          Event-Driven Automation
+        </span>
+      </div>
+
+      <!-- Expandable details -->
+      <details class="group text-slate-400">
+        <summary class="cursor-pointer select-none flex items-center gap-2 text-sm hover:text-cyan-400 transition-colors">
+          <span>Read more</span>
+          <span class="transition-transform group-open:rotate-180">▾</span>
+        </summary>
+
+        <div class="mt-6 space-y-6 leading-relaxed">
+
+          <!-- What it does -->
+          <div>
+            <h4 class="text-slate-200 font-semibold mb-2">
+              What it does
+            </h4>
+            <p>
+              This system continuously monitors authentication activity and detects potential
+              brute-force or credential misuse attempts by identifying repeated login failures
+              for the same user within a short time window.
+            </p>
+            <p class="mt-3">
+              When suspicious patterns are detected, a detailed alert is generated and
+              delivered automatically — no manual log review required.
+            </p>
+          </div>
+
+          <!-- How it works -->
+          <div>
+            <h4 class="text-slate-200 font-semibold mb-2">
+              How it works
+            </h4>
+            <p>
+              CloudTrail management events are ingested via CloudWatch Logs and stored as failed
+              login events in DynamoDB.
+            </p>
+            <p class="mt-3">
+              A scheduled detection Lambda, triggered by Amazon EventBridge, scans the event
+              data and correlates login failures per user across a rolling five-minute window.
+              When the failure count for a user exceeds a defined threshold, the Lambda
+              generates a structured security alert.
+            </p>
+            <p class="mt-3">
+              The alert includes relevant context such as the username, source IP address, and
+              timestamps, and is delivered via SNS directly to an inbox.
+            </p>
+            <p class="mt-3">
+              A second DynamoDB table tracks the last scan time, ensuring efficient processing
+              without re-evaluating previously analyzed events.
+            </p>
+          </div>
+
+          <!-- Key components -->
+          <div>
+            <h4 class="text-slate-200 font-semibold mb-2">
+              Key components
+            </h4>
+            <ul class="list-disc list-inside space-y-1">
+              <li>DynamoDB (Events Table) – Stores failed login attempts</li>
+              <li>DynamoDB (State Table) – Tracks last scan time for efficient detection</li>
+              <li>Detection Lambda – Correlates login failures and applies detection logic</li>
+              <li>Amazon EventBridge – Triggers detection on a fixed schedule</li>
+              <li>SNS – Delivers alerts automatically</li>
+              <li>CloudTrail + CloudWatch Logs – Source of raw authentication events</li>
+            </ul>
+          </div>
+
+          <!-- Detection logic -->
+          <div>
+            <h4 class="text-slate-200 font-semibold mb-2">
+              Detection logic
+            </h4>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Groups failed login attempts by user</li>
+              <li>Evaluates activity within a five-minute window</li>
+              <li>Triggers an alert when three or more failures occur for the same user</li>
+              <li>Sends contextual details including IP address, username, and timestamps</li>
+            </ul>
+          </div>
+
+          <!-- Outcome -->
+          <div>
+            <h4 class="text-slate-200 font-semibold mb-2">
+              Outcome
+            </h4>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Real-time visibility into suspicious login behavior</li>
+              <li>Automated detection without manual log analysis</li>
+              <li>Actionable alerts with clear context</li>
+              <li>Scalable pattern-based detection using native AWS services</li>
+            </ul>
+          </div>
+
+          <!-- Why it matters -->
+          <div>
+            <h4 class="text-slate-200 font-semibold mb-2">
+              Why it matters
+            </h4>
+            <p>
+              Effective security monitoring isn’t just about collecting logs — it’s about
+              correlating behavior and surfacing risk quickly. This project demonstrates how
+              simple detection logic, when applied consistently and automatically, can provide
+              meaningful security visibility across an AWS environment.
+            </p>
+          </div>
+
+        </div>
+      </details>
+    </div>
+
+  </div>
+</article>
+
+<!-- Project: GuardDuty-Driven SSH Brute-Force Detection & Auto-Remediation -->
+<article class="fade-in">
+  <div class="border border-slate-700/50 rounded-lg overflow-hidden hover:border-cyan-500/30 transition-colors bg-[#1e293b]/30">
+
+    <!-- Project Image -->
+    <div class="bg-slate-800/50">
+      <img
+        src="assets/projects/guard-duty-automation.png"
+        alt="GuardDuty-driven SSH brute-force detection and automated remediation pipeline"
+        class="w-full h-auto block"
+      />
+    </div>
+
+    <div class="p-8">
+      <h2 class="text-3xl font-bold text-slate-100 mb-4">
+        GuardDuty-Driven SSH Brute-Force Detection & Auto-Remediation
+      </h2>
+
+      <!-- Short summary (always visible) -->
+      <p class="text-slate-300 leading-relaxed text-lg mb-3">
+        Built an automated security pipeline that detects SSH brute-force attempts using
+        Amazon GuardDuty and automatically blocks the offending IP address by updating a
+        network access control list (NACL) in real time.
+      </p>
+
+      <!-- Tags (always visible) -->
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">
+          Cloud Security
+        </span>
+        <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">
+          Event-Driven Remediation
+        </span>
+        <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">
+          Automated Incident Response
+        </span>
+      </div>
+
+      <!-- Expandable details -->
+      <details class="group text-slate-400">
+        <summary class="cursor-pointer select-none flex items-center gap-2 text-sm hover:text-cyan-400 transition-colors">
+          <span>Read more</span>
+          <span class="transition-transform group-open:rotate-180">▾</span>
+        </summary>
+
+        <div class="mt-6 space-y-6 leading-relaxed">
+
+          <!-- What it does -->
+          <div>
+            <h4 class="text-slate-200 font-semibold mb-2">
+              What it does
+            </h4>
+            <p>
+              This system monitors AWS GuardDuty findings for SSH brute-force activity against
+              an EC2 instance in a public subnet and responds automatically.
+            </p>
+            <p class="mt-3">
+              When a threat is detected, it generates a clean, readable alert and applies
+              immediate network-level remediation without manual intervention.
+            </p>
+          </div>
+
+          <!-- How it works -->
+          <div>
+            <h4 class="text-slate-200 font-semibold mb-2">
+              How it works
+            </h4>
+            <p>
+              Amazon GuardDuty continuously analyzes VPC flow logs, CloudTrail events, and DNS
+              logs to detect suspicious behavior. When an SSH brute-force finding is generated,
+              an Amazon EventBridge rule matches the event pattern and routes it through the
+              pipeline.
+            </p>
+            <p class="mt-3">
+              The finding is first sent to a Lambda function that parses and restructures the
+              raw GuardDuty data into a concise, human-readable alert. This cleaned alert is
+              then published to SNS and delivered via email.
+            </p>
+            <p class="mt-3">
+              For remediation, a second Lambda function is triggered by the same EventBridge
+              rule. This function extracts the offending IP address from the GuardDuty finding
+              and automatically updates the VPC’s Network ACL to block further access from that
+              source.
+            </p>
+            <p class="mt-3">
+              As a result, detection, alerting, and remediation occur within seconds of the
+              initial attack signal.
+            </p>
+          </div>
+
+          <!-- Key components -->
+          <div>
+            <h4 class="text-slate-200 font-semibold mb-2">
+              Key components
+            </h4>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Amazon GuardDuty – Detects SSH brute-force activity</li>
+              <li>Amazon EventBridge – Routes security findings based on event patterns</li>
+              <li>Lambda (Alert Processing) – Parses and formats GuardDuty findings</li>
+              <li>Lambda (Remediation) – Updates the NACL with the malicious IP</li>
+              <li>Network ACL (NACL) – Enforces network-level blocking</li>
+              <li>SNS – Delivers clean security alerts via email</li>
+            </ul>
+          </div>
+
+          <!-- Outcome -->
+          <div>
+            <h4 class="text-slate-200 font-semibold mb-2">
+              Outcome
+            </h4>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Automated detection of SSH brute-force attempts</li>
+              <li>Immediate network-level blocking of malicious IPs</li>
+              <li>Clear, readable alerts instead of raw GuardDuty logs</li>
+              <li>Reduced response time with no manual intervention</li>
+            </ul>
+          </div>
+
+          <!-- Why it matters -->
+          <div>
+            <h4 class="text-slate-200 font-semibold mb-2">
+              Why it matters
+            </h4>
+            <p>
+              Security automation is most effective when detection and response are tightly
+              coupled. This project demonstrates how AWS native services can be combined to
+              move from alerting to action, reducing exposure time and ensuring consistent,
+              repeatable responses to common attack patterns.
+            </p>
+          </div>
+
+        </div>
+      </details>
+    </div>
+
+  </div>
+</article>
+
+<!-- Project: Automated Personal Finance & Spending Insights Pipeline -->
+<article class="fade-in">
+  <div class="border border-slate-700/50 rounded-lg overflow-hidden hover:border-cyan-500/30 transition-colors bg-[#1e293b]/30">
+
+    <!-- Project Image -->
+    <div class="bg-slate-800/50">
+      <img
+        src="assets/projects/personal-finance-automation.png"
+        alt="Automated personal finance and spending insights pipeline"
+        class="w-full h-auto block"
+      />
+    </div>
+
+    <div class="p-8">
+      <h2 class="text-3xl font-bold text-slate-100 mb-4">
+        Automated Personal Finance & Spending Insights Pipeline
+      </h2>
+
+      <!-- Short summary (always visible) -->
+      <p class="text-slate-300 leading-relaxed text-lg mb-3">
+        Built an automation workflow that ingests transaction alerts from email, cleans and
+        categorizes the data using AI, stores it in a structured format, and generates
+        automated spending insights without manual tracking.
+      </p>
+
+      <!-- Tags (always visible) -->
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">
+          Process Automation
+        </span>
+        <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">
+          AI-Assisted Workflows
+        </span>
+        <span class="px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 rounded-full border border-cyan-400/20">
+          Orchestration
+        </span>
+      </div>
+
+      <!-- Expandable details -->
+      <details class="group text-slate-400">
+        <summary class="cursor-pointer select-none flex items-center gap-2 text-sm hover:text-cyan-400 transition-colors">
+          <span>Read more</span>
+          <span class="transition-transform group-open:rotate-180">▾</span>
+        </summary>
+
+        <div class="mt-6 space-y-6 leading-relaxed">
+
+          <!-- What it does -->
+          <div>
+            <h4 class="text-slate-200 font-semibold mb-2">
+              What it does
+            </h4>
+            <p>
+              This system replaces manual expense tracking by automatically processing
+              transaction alerts as they arrive.
+            </p>
+            <p class="mt-3">
+              It ingests raw transaction notifications, categorizes and cleans the data using
+              AI, stores the results in Google Sheets, and generates summarized insights about
+              spending behavior and trends.
+            </p>
+          </div>
+
+          <!-- How it works -->
+          <div>
+            <h4 class="text-slate-200 font-semibold mb-2">
+              How it works
+            </h4>
+            <p>
+              Transaction alert emails are ingested directly from Gmail and passed into an
+              automation workflow.
+            </p>
+            <p class="mt-3">
+              AI is used to extract relevant fields, normalize transaction data, and categorize
+              each entry consistently. Cleaned transactions are stored in Google Sheets, where
+              duplication checks and formatting are handled automatically.
+            </p>
+            <p class="mt-3">
+              A second AI-driven step analyzes the accumulated data to identify spending
+              patterns and generate summarized insights, which are then delivered automatically
+              without manual reporting.
+            </p>
+          </div>
+
+          <!-- Key components -->
+          <div>
+            <h4 class="text-slate-200 font-semibold mb-2">
+              Key components
+            </h4>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Gmail ingestion – Captures transaction alerts in real time</li>
+              <li>AI processing – Cleans, normalizes, and categorizes transaction data</li>
+              <li>Google Sheets – Structured storage and lightweight reporting</li>
+              <li>AI analysis layer – Generates spending insights and trends</li>
+              <li>n8n – Orchestrates the end-to-end workflow</li>
+            </ul>
+          </div>
+
+          <!-- Outcome -->
+          <div>
+            <h4 class="text-slate-200 font-semibold mb-2">
+              Outcome
+            </h4>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Eliminates manual expense tracking</li>
+              <li>Removes duplication and formatting overhead</li>
+              <li>Provides consistent categorization and insights</li>
+              <li>Saves hours of recurring administrative work</li>
+            </ul>
+          </div>
+
+          <!-- Why it matters -->
+          <div>
+            <h4 class="text-slate-200 font-semibold mb-2">
+              Why it matters
+            </h4>
+            <p>
+              Automation doesn’t start with complex systems — it starts by removing friction
+              from everyday processes. This project demonstrates how simple automation
+              principles can be applied to personal workflows in the same way they are applied
+              in larger systems, using orchestration, data normalization, and automated
+              analysis to replace repetitive manual work.
+            </p>
+          </div>
+
+        </div>
+      </details>
+    </div>
+
+  </div>
+</article>
 
         </div>
     </section>
