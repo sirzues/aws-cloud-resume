@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building a Multi-Stage Attack Chain: Breach Confirmation — Mahesh Harripaul</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+    html { scroll-behavior: smooth; }
+    .fade-in { animation: fadeIn 0.7s ease-out both; }
+    .tag { display:inline-block; padding:2px 10px; font-size:0.7rem; font-weight:500; border-radius:9999px; background:rgba(34,211,238,0.08); color:#22d3ee; border:1px solid rgba(34,211,238,0.2); }
+    .prose p { margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.8; }
+    .prose h2 { font-size: 1.2rem; font-weight: 600; color: #f1f5f9; margin: 2.5rem 0 0.75rem; padding-top: 0.5rem; border-top: 1px solid rgba(148,163,184,0.1); }
+    .prose h3 { font-size: 1rem; font-weight: 600; color: #e2e8f0; margin: 1.75rem 0 0.6rem; }
+    .prose ul { margin: 0 0 1.25rem 1.25rem; list-style: disc; color: #cbd5e1; line-height: 1.8; }
+    .prose ol { margin: 0 0 1.25rem 1.5rem; list-style: decimal; color: #cbd5e1; line-height: 1.8; }
+    .prose li { margin-bottom: 0.4rem; }
+    .prose code { font-family: 'Courier New', monospace; font-size: 0.82rem; background: rgba(148,163,184,0.1); color: #22d3ee; padding: 1px 6px; border-radius: 4px; }
+    .prose pre { background: #0d1424; border: 1px solid rgba(148,163,184,0.12); border-radius: 8px; padding: 1.25rem; margin: 1.5rem 0; overflow-x: auto; }
+    .prose pre code { background: none; padding: 0; color: #94a3b8; font-size: 0.78rem; line-height: 1.75; }
+    .prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.82rem; }
+    .prose th { text-align: left; padding: 8px 12px; border-bottom: 1px solid rgba(148,163,184,0.2); color: #64748b; font-weight: 500; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .prose td { padding: 9px 12px; border-bottom: 1px solid rgba(148,163,184,0.07); color: #94a3b8; vertical-align: top; }
+    .prose tr:last-child td { border-bottom: none; }
+    .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; }
+    .stat { background: #111827; border: 1px solid rgba(148,163,184,0.1); border-radius: 10px; padding: 0.9rem; text-align: center; }
+    .stat-num { font-size: 1.6rem; font-weight: 700; color: #22d3ee; }
+    .stat-label { font-size: 0.68rem; color: #64748b; margin-top: 3px; line-height: 1.3; }
+    #mobile-menu { display:none; }
+    #mobile-menu.open { display:flex; }
+  </style>
+</head>
+<body class="bg-[#0a0f1a] text-slate-100 antialiased">
+
+  <header class="sticky top-0 z-50 bg-[#0a0f1a]/95 backdrop-blur-sm border-b border-slate-800/50">
+    <div class="max-w-6xl mx-auto px-4 py-5 flex justify-between items-center">
+      <a href="../index.html" class="block">
+        <span class="text-lg font-bold text-slate-100">Mahesh Harripaul</span>
+        <span class="hidden md:block text-xs text-slate-500 mt-0.5">Detection & Security Automation Engineer</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="../index.html"         class="text-slate-400 hover:text-cyan-400 transition-colors pb-0.5">Home</a>
+        <a href="../experience.html"    class="text-slate-400 hover:text-cyan-400 transition-colors pb-0.5">Experience</a>
+        <a href="index.html"            class="text-cyan-400 border-b border-cyan-400/30 pb-0.5">Blog</a>
+        <a href="../services.html"      class="text-slate-400 hover:text-cyan-400 transition-colors pb-0.5">Services</a>
+        <a href="../index.html#contact" class="text-slate-400 hover:text-cyan-400 transition-colors pb-0.5">Contact</a>
+      </nav>
+      <button id="hamburger" aria-label="Open menu" class="md:hidden flex flex-col gap-1.5 p-1">
+        <span class="block w-5 h-px bg-slate-400"></span>
+        <span class="block w-5 h-px bg-slate-400"></span>
+        <span class="block w-5 h-px bg-slate-400"></span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden flex-col border-t border-slate-800/50 bg-[#0a0f1a]">
+      <a href="../index.html"         class="block px-4 py-3 text-sm text-slate-400 border-b border-slate-800/30">Home</a>
+      <a href="../experience.html"    class="block px-4 py-3 text-sm text-slate-400 border-b border-slate-800/30">Experience</a>
+      <a href="index.html"            class="block px-4 py-3 text-sm text-cyan-400 border-b border-slate-800/30">Blog</a>
+      <a href="../services.html"      class="block px-4 py-3 text-sm text-slate-400 border-b border-slate-800/30">Services</a>
+      <a href="../index.html#contact" class="block px-4 py-3 text-sm text-slate-400">Contact</a>
+    </div>
+  </header>
+
+  <section class="py-16 px-4 pt-24 border-b border-slate-800/40">
+    <div class="max-w-3xl mx-auto fade-in">
+      <a href="index.html" class="text-xs text-slate-500 hover:text-cyan-400 transition-colors inline-flex items-center gap-1 mb-8">← Back to blog</a>
+      <div class="flex flex-wrap gap-2 mb-5"><span class="tag">Wazuh</span><span class="tag">Attack chain</span><span class="tag">MITRE T1110.001</span><span class="tag">Multi-stage detection</span></div>
+      <h1 class="text-3xl md:text-4xl font-bold text-slate-100 mb-4 leading-tight">Building a Multi-Stage Attack Chain: Breach Confirmation</h1>
+      <p class="text-slate-500 text-sm">June 5, 2026 · Mahesh Harripaul</p>
+    </div>
+  </section>
+
+  <section class="px-4 py-8 bg-[#0d1424] border-b border-slate-800/40">
+    <div class="max-w-3xl mx-auto">
+      <div class="stat-row"><div class="stat"><div class="stat-num">13</div><div class="stat-label">Alert level reached</div></div>
+<div class="stat"><div class="stat-num">300s</div><div class="stat-label">Chain timeframe</div></div>
+<div class="stat"><div class="stat-num">4</div><div class="stat-label">LogonTypes</div></div>
+</div>
+      <p class="text-xs text-slate-600 text-center mt-3">Rules 100006–100007 · level 13 critical · mail: true</p>
+    </div>
+  </section>
+
+  <article class="py-14 px-4">
+    <div class="max-w-3xl mx-auto prose">
+
+      <p>Individual alerts are useful. A chain of correlated alerts is where real threat detection happens. A brute force attack followed immediately by a successful login on the same account means the attack worked. The system should reflect that difference — not treat both events as separate medium-severity notes.</p>
+
+      <h2>The goal</h2>
+      <p>A rule that fires at critical severity when: brute force attack detected AND a successful login follows on the same account within 5 minutes. This is T1110.001 — Brute Force: Password Guessing confirmed successful.</p>
+
+      <h2>The rule architecture</h2>
+      <pre><code>Rule 100002 fires (failed logon)
+        │
+        │ × 5 in 120 seconds, same username
+        ▼
+Rule 100003 fires — group: windows_brute_force
+        │
+        │ within 300 seconds
+        ▼
+Rule 100006 fires (interactive logon detected)
+        │
+        ▼
+Rule 100007 fires — level 13 critical
+"Breach confirmed after brute force"</code></pre>
+
+      <h2>The successful login rule</h2>
+      <pre><code>&lt;rule id="100006" level="3"&gt;
+  &lt;if_sid&gt;60118&lt;/if_sid&gt;
+  &lt;field name="win.system.eventID"&gt;^4624$&lt;/field&gt;
+  &lt;field name="win.eventdata.logonType"&gt;^2$|^7$|^10$|^11$&lt;/field&gt;
+  &lt;description&gt;Windows: Interactive user logon detected&lt;/description&gt;
+  &lt;group&gt;windows_logon_success,&lt;/group&gt;
+&lt;/rule&gt;</code></pre>
+      <p>LogonType values that indicate interactive access:</p>
+      <table><thead><tr><th>Type</th><th>Meaning</th></tr></thead><tbody>
+      <tr><td><code>2</code></td><td>Interactive — at the keyboard</td></tr>
+      <tr><td><code>7</code></td><td>Unlock</td></tr>
+      <tr><td><code>10</code></td><td>RemoteInteractive (RDP)</td></tr>
+      <tr><td><code>11</code></td><td>CachedInteractive</td></tr>
+      </tbody></table>
+      <p>The <code>^</code> and <code>$</code> anchors ensure exact matches. Without them, <code>2</code> would also match <code>12</code>, <code>21</code>, <code>32</code>.</p>
+
+      <h2>The breach confirmation rule</h2>
+      <pre><code>&lt;rule id="100007" level="13" timeframe="300"&gt;
+  &lt;if_matched_group&gt;windows_brute_force&lt;/if_matched_group&gt;
+  &lt;if_sid&gt;100006&lt;/if_sid&gt;
+  &lt;same_field&gt;win.eventdata.targetUserName&lt;/same_field&gt;
+  &lt;description&gt;Windows: Successful login following brute force — possible breach&lt;/description&gt;
+  &lt;group&gt;windows_breach_confirmed,attack_chain,&lt;/group&gt;
+  &lt;mitre&gt;&lt;id&gt;T1110.001&lt;/id&gt;&lt;/mitre&gt;
+&lt;/rule&gt;</code></pre>
+      <p>Level 13 automatically sets <code>mail: true</code> in Wazuh — email notification fires on breach confirmation without any additional configuration.</p>
+
+      <h2>Testing the full chain</h2>
+      <p>A test account was created for successful login simulation. Multiple failed logins were run to trigger brute force detection, then the test account was authenticated successfully. The level 13 alert fired. The alert showed <code>mail: true</code>.</p>
+
+      <h2>The first-match-wins problem</h2>
+      <p>Two rules competing for the same parent event — the first rule in the file wins. Rule ordering matters in Wazuh. If a rule chain isn't firing as expected, check whether an earlier rule is consuming the triggering event before the intended rule can match it. The fix is restructuring the chain so rules feed into each other rather than compete.</p>
+
+    </div>
+  </article>
+
+  <section class="px-4 pb-20">
+    <div class="max-w-3xl mx-auto border-t border-slate-800/40 pt-8 flex flex-wrap gap-4 justify-between">
+      <a href="post-03-brute-force-rules.html" class="text-cyan-400 hover:text-cyan-300 text-sm inline-flex items-center gap-2 group"><span class="group-hover:-translate-x-1 transition-transform">←</span><span>Previous: Writing the First Correlation Rules</span></a><a href="post-05-sysmon.html" class="ml-auto text-cyan-400 hover:text-cyan-300 text-sm inline-flex items-center gap-2 group"><span>Next: Installing Sysmon</span><span class="group-hover:translate-x-1 transition-transform">→</span></a>
+      <a href="index.html" class="text-slate-500 hover:text-slate-400 text-sm">All posts →</a>
+    </div>
+  </section>
+
+  <footer class="py-10 px-4 bg-[#0a0f1a] border-t border-slate-800/50">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-600">
+      <span>Mahesh Harripaul · Detection & Security Automation Engineer</span>
+      <div class="flex gap-6">
+        <a href="../index.html"         class="hover:text-slate-400 transition-colors">Home</a>
+        <a href="../experience.html"    class="hover:text-slate-400 transition-colors">Experience</a>
+        <a href="../services.html"      class="hover:text-slate-400 transition-colors">Services</a>
+        <a href="../index.html#contact" class="hover:text-slate-400 transition-colors">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('mobile-menu').classList.toggle('open');
+    });
+  </script>
+</body>
+</html>

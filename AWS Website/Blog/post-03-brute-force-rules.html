@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Writing the First Correlation Rules: Brute Force Detection — Mahesh Harripaul</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+    html { scroll-behavior: smooth; }
+    .fade-in { animation: fadeIn 0.7s ease-out both; }
+    .tag { display:inline-block; padding:2px 10px; font-size:0.7rem; font-weight:500; border-radius:9999px; background:rgba(34,211,238,0.08); color:#22d3ee; border:1px solid rgba(34,211,238,0.2); }
+    .prose p { margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.8; }
+    .prose h2 { font-size: 1.2rem; font-weight: 600; color: #f1f5f9; margin: 2.5rem 0 0.75rem; padding-top: 0.5rem; border-top: 1px solid rgba(148,163,184,0.1); }
+    .prose h3 { font-size: 1rem; font-weight: 600; color: #e2e8f0; margin: 1.75rem 0 0.6rem; }
+    .prose ul { margin: 0 0 1.25rem 1.25rem; list-style: disc; color: #cbd5e1; line-height: 1.8; }
+    .prose ol { margin: 0 0 1.25rem 1.5rem; list-style: decimal; color: #cbd5e1; line-height: 1.8; }
+    .prose li { margin-bottom: 0.4rem; }
+    .prose code { font-family: 'Courier New', monospace; font-size: 0.82rem; background: rgba(148,163,184,0.1); color: #22d3ee; padding: 1px 6px; border-radius: 4px; }
+    .prose pre { background: #0d1424; border: 1px solid rgba(148,163,184,0.12); border-radius: 8px; padding: 1.25rem; margin: 1.5rem 0; overflow-x: auto; }
+    .prose pre code { background: none; padding: 0; color: #94a3b8; font-size: 0.78rem; line-height: 1.75; }
+    .prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.82rem; }
+    .prose th { text-align: left; padding: 8px 12px; border-bottom: 1px solid rgba(148,163,184,0.2); color: #64748b; font-weight: 500; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .prose td { padding: 9px 12px; border-bottom: 1px solid rgba(148,163,184,0.07); color: #94a3b8; vertical-align: top; }
+    .prose tr:last-child td { border-bottom: none; }
+    .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; }
+    .stat { background: #111827; border: 1px solid rgba(148,163,184,0.1); border-radius: 10px; padding: 0.9rem; text-align: center; }
+    .stat-num { font-size: 1.6rem; font-weight: 700; color: #22d3ee; }
+    .stat-label { font-size: 0.68rem; color: #64748b; margin-top: 3px; line-height: 1.3; }
+    #mobile-menu { display:none; }
+    #mobile-menu.open { display:flex; }
+  </style>
+</head>
+<body class="bg-[#0a0f1a] text-slate-100 antialiased">
+
+  <header class="sticky top-0 z-50 bg-[#0a0f1a]/95 backdrop-blur-sm border-b border-slate-800/50">
+    <div class="max-w-6xl mx-auto px-4 py-5 flex justify-between items-center">
+      <a href="../index.html" class="block">
+        <span class="text-lg font-bold text-slate-100">Mahesh Harripaul</span>
+        <span class="hidden md:block text-xs text-slate-500 mt-0.5">Detection & Security Automation Engineer</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="../index.html"         class="text-slate-400 hover:text-cyan-400 transition-colors pb-0.5">Home</a>
+        <a href="../experience.html"    class="text-slate-400 hover:text-cyan-400 transition-colors pb-0.5">Experience</a>
+        <a href="index.html"            class="text-cyan-400 border-b border-cyan-400/30 pb-0.5">Blog</a>
+        <a href="../services.html"      class="text-slate-400 hover:text-cyan-400 transition-colors pb-0.5">Services</a>
+        <a href="../index.html#contact" class="text-slate-400 hover:text-cyan-400 transition-colors pb-0.5">Contact</a>
+      </nav>
+      <button id="hamburger" aria-label="Open menu" class="md:hidden flex flex-col gap-1.5 p-1">
+        <span class="block w-5 h-px bg-slate-400"></span>
+        <span class="block w-5 h-px bg-slate-400"></span>
+        <span class="block w-5 h-px bg-slate-400"></span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden flex-col border-t border-slate-800/50 bg-[#0a0f1a]">
+      <a href="../index.html"         class="block px-4 py-3 text-sm text-slate-400 border-b border-slate-800/30">Home</a>
+      <a href="../experience.html"    class="block px-4 py-3 text-sm text-slate-400 border-b border-slate-800/30">Experience</a>
+      <a href="index.html"            class="block px-4 py-3 text-sm text-cyan-400 border-b border-slate-800/30">Blog</a>
+      <a href="../services.html"      class="block px-4 py-3 text-sm text-slate-400 border-b border-slate-800/30">Services</a>
+      <a href="../index.html#contact" class="block px-4 py-3 text-sm text-slate-400">Contact</a>
+    </div>
+  </header>
+
+  <section class="py-16 px-4 pt-24 border-b border-slate-800/40">
+    <div class="max-w-3xl mx-auto fade-in">
+      <a href="index.html" class="text-xs text-slate-500 hover:text-cyan-400 transition-colors inline-flex items-center gap-1 mb-8">← Back to blog</a>
+      <div class="flex flex-wrap gap-2 mb-5"><span class="tag">Wazuh</span><span class="tag">Correlation rules</span><span class="tag">MITRE T1110</span><span class="tag">Detection engineering</span></div>
+      <h1 class="text-3xl md:text-4xl font-bold text-slate-100 mb-4 leading-tight">Writing the First Correlation Rules: Brute Force Detection</h1>
+      <p class="text-slate-500 text-sm">June 3–5, 2026 · Mahesh Harripaul</p>
+    </div>
+  </section>
+
+  <section class="px-4 py-8 bg-[#0d1424] border-b border-slate-800/40">
+    <div class="max-w-3xl mx-auto">
+      <div class="stat-row"><div class="stat"><div class="stat-num">4</div><div class="stat-label">Rules written</div></div>
+<div class="stat"><div class="stat-num">5</div><div class="stat-label">Frequency threshold</div></div>
+<div class="stat"><div class="stat-num">120s</div><div class="stat-label">Timeframe</div></div>
+</div>
+      <p class="text-xs text-slate-600 text-center mt-3">Custom rules 100002–100005 · MITRE T1110 · T1484</p>
+    </div>
+  </section>
+
+  <article class="py-14 px-4">
+    <div class="max-w-3xl mx-auto prose">
+
+      <p>With the pipeline understood, it was time to write the first custom rules. The process for every rule is the same: generate a real event, confirm the field names from actual data, write the rule, test it. Never assume a field name. Always verify from a real alert.</p>
+
+      <h2>The rule writing workflow</h2>
+      <ol>
+        <li>Identify the gap in default coverage</li>
+        <li>Generate a real event to inspect</li>
+        <li>Confirm exact field names from the actual alert in the dashboard</li>
+        <li>Write the rule targeting those confirmed fields</li>
+        <li>Deploy, test, and validate</li>
+      </ol>
+
+      <h2>Parent and child rule structure</h2>
+      <pre><code>&lt;group name="local,windows,authentication,"&gt;
+
+  &lt;rule id="100002" level="5"&gt;
+    &lt;if_sid&gt;60122&lt;/if_sid&gt;
+    &lt;description&gt;Windows: Failed logon attempt&lt;/description&gt;
+    &lt;group&gt;windows_failed_logon,authentication_failed,&lt;/group&gt;
+    &lt;mitre&gt;&lt;id&gt;T1110&lt;/id&gt;&lt;/mitre&gt;
+  &lt;/rule&gt;
+
+  &lt;rule id="100003" level="10" frequency="5" timeframe="120"&gt;
+    &lt;if_matched_sid&gt;100002&lt;/if_matched_sid&gt;
+    &lt;same_field&gt;win.eventdata.targetUserName&lt;/same_field&gt;
+    &lt;description&gt;Windows: Brute force attack detected&lt;/description&gt;
+    &lt;group&gt;windows_brute_force,&lt;/group&gt;
+    &lt;mitre&gt;&lt;id&gt;T1110&lt;/id&gt;&lt;/mitre&gt;
+  &lt;/rule&gt;
+
+&lt;/group&gt;</code></pre>
+      <p>Rule 100002 is a parent that chains from Wazuh's built-in rule 60122. By owning an intermediate rule, the correlation logic is controlled without depending on built-in rules that might change on updates. Custom rule IDs must be 100000 or above.</p>
+
+      <h2>How the correlation rule works</h2>
+      <p>Rule 100003 uses three attributes together:</p>
+      <ul>
+        <li><code>frequency="5"</code> — the parent must fire 5 times</li>
+        <li><code>timeframe="120"</code> — within 120 seconds</li>
+        <li><code>same_field&gt;win.eventdata.targetUserName</code> — all 5 must target the same username</li>
+      </ul>
+      <p>Five failed logins against the same account in two minutes is a brute force attack. One failed login is a typo.</p>
+
+      <h2>Critical: field names in rules vs dashboard</h2>
+      <p>The dashboard shows field names with a <code>data.</code> prefix. Inside rule XML that prefix does not exist:</p>
+      <pre><code># Dashboard search
+data.win.eventdata.targetUserName
+
+# Rule XML — drop the data. prefix
+&lt;same_field&gt;win.eventdata.targetUserName&lt;/same_field&gt;</code></pre>
+      <p>The <code>data.</code> prefix is added by the indexer when storing alerts. It does not exist in the rules engine. This is the single most common early mistake.</p>
+
+      <h2>same_field vs same_srcuser</h2>
+      <p>Wazuh has shortcut tags like <code>&lt;same_srcuser /&gt;</code> that are supposed to handle username correlation. For Windows eventchannel logs these silently fail — they map to internal fields that the Windows decoder does not populate. Always use <code>&lt;same_field&gt;win.eventdata.fieldname&lt;/same_field&gt;</code> for Windows events.</p>
+
+      <h2>Deploying and testing</h2>
+      <pre><code># Deploy
+sudo systemctl reload wazuh-manager
+
+# Watch alerts in real time
+sudo tail -f /var/ossec/logs/alerts/alerts.log</code></pre>
+      <p>Simulate the attack — five failed logins quickly against the same account. The brute force rule fired at level 10. Alert appeared in the dashboard within seconds and was automatically mapped to MITRE ATT&CK T1110 in the framework view.</p>
+
+      <h2>Rules written this session</h2>
+      <table><thead><tr><th>Rule ID</th><th>Description</th><th>Level</th></tr></thead><tbody>
+      <tr><td><code>100002</code></td><td>Failed logon parent — fires on every Event ID 4625</td><td>5</td></tr>
+      <tr><td><code>100003</code></td><td>Brute force — same account fails 5× in 120 seconds</td><td>10</td></tr>
+      <tr><td><code>100004</code></td><td>Privilege escalation parent — Event ID 4672</td><td>7</td></tr>
+      <tr><td><code>100005</code></td><td>Repeated privilege escalation — same user 3× in 300 seconds</td><td>10</td></tr>
+      </tbody></table>
+
+    </div>
+  </article>
+
+  <section class="px-4 pb-20">
+    <div class="max-w-3xl mx-auto border-t border-slate-800/40 pt-8 flex flex-wrap gap-4 justify-between">
+      <a href="post-02-log-pipeline.html" class="text-cyan-400 hover:text-cyan-300 text-sm inline-flex items-center gap-2 group"><span class="group-hover:-translate-x-1 transition-transform">←</span><span>Previous: Understanding the Log Pipeline</span></a><a href="post-04-attack-chain.html" class="ml-auto text-cyan-400 hover:text-cyan-300 text-sm inline-flex items-center gap-2 group"><span>Next: Building a Multi-Stage Attack Chain</span><span class="group-hover:translate-x-1 transition-transform">→</span></a>
+      <a href="index.html" class="text-slate-500 hover:text-slate-400 text-sm">All posts →</a>
+    </div>
+  </section>
+
+  <footer class="py-10 px-4 bg-[#0a0f1a] border-t border-slate-800/50">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-600">
+      <span>Mahesh Harripaul · Detection & Security Automation Engineer</span>
+      <div class="flex gap-6">
+        <a href="../index.html"         class="hover:text-slate-400 transition-colors">Home</a>
+        <a href="../experience.html"    class="hover:text-slate-400 transition-colors">Experience</a>
+        <a href="../services.html"      class="hover:text-slate-400 transition-colors">Services</a>
+        <a href="../index.html#contact" class="hover:text-slate-400 transition-colors">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('mobile-menu').classList.toggle('open');
+    });
+  </script>
+</body>
+</html>
