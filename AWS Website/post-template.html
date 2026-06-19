@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POST TITLE — Mahesh Harripaul</title>
+  <meta name="description" content="POST DESCRIPTION — 1-2 sentences, SEO-optimised, include key tools/techniques.">
+  <meta name="keywords" content="KEYWORD 1, KEYWORD 2, KEYWORD 3">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+    html { scroll-behavior: smooth; }
+    .fade-in { animation: fadeIn 0.7s ease-out both; }
+    .section-label { font-size:0.7rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#22d3ee; margin-bottom:0.75rem; }
+    .tag { display:inline-block; padding:2px 10px; font-size:0.7rem; font-weight:500; border-radius:9999px; background:rgba(34,211,238,0.08); color:#22d3ee; border:1px solid rgba(34,211,238,0.2); }
+    .prose p { margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.8; }
+    .prose h2 { font-size: 1.25rem; font-weight: 600; color: #f1f5f9; margin: 2.5rem 0 1rem; }
+    .prose h3 { font-size: 1rem; font-weight: 600; color: #e2e8f0; margin: 2rem 0 0.75rem; }
+    .prose ul { margin: 0 0 1.25rem 1.25rem; list-style: disc; color: #cbd5e1; line-height: 1.8; }
+    .prose li { margin-bottom: 0.4rem; }
+    .prose code { font-family: 'Courier New', monospace; font-size: 0.82rem; background: rgba(148,163,184,0.1); color: #22d3ee; padding: 1px 6px; border-radius: 4px; }
+    .prose pre { background: #0d1424; border: 1px solid rgba(148,163,184,0.1); border-radius: 8px; padding: 1.25rem; margin: 1.5rem 0; overflow-x: auto; }
+    .prose pre code { background: none; padding: 0; color: #94a3b8; font-size: 0.8rem; line-height: 1.7; }
+    .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 12px; margin: 2rem 0; }
+    .stat { background: #111827; border: 1px solid rgba(148,163,184,0.1); border-radius: 10px; padding: 1rem; text-align: center; }
+    .stat-num { font-size: 1.75rem; font-weight: 700; color: #22d3ee; }
+    .stat-label { font-size: 0.7rem; color: #64748b; margin-top: 4px; }
+    #mobile-menu { display:none; }
+    #mobile-menu.open { display:flex; }
+  </style>
+</head>
+<body class="bg-[#0a0f1a] text-slate-100 antialiased">
+
+  <!-- ── HEADER ── -->
+  <header class="sticky top-0 z-50 bg-[#0a0f1a]/95 backdrop-blur-sm border-b border-slate-800/50">
+    <div class="max-w-6xl mx-auto px-4 py-5 flex justify-between items-center">
+      <a href="../index.html" class="block">
+        <span class="text-lg font-bold text-slate-100">Mahesh Harripaul</span>
+        <span class="hidden md:block text-xs text-slate-500 mt-0.5">Detection & Security Automation Engineer</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="../index.html"         class="text-slate-400 hover:text-cyan-400 transition-colors border-b border-transparent hover:border-cyan-400/30 pb-0.5">Home</a>
+        <a href="../experience.html"    class="text-slate-400 hover:text-cyan-400 transition-colors border-b border-transparent hover:border-cyan-400/30 pb-0.5">Experience</a>
+        <a href="index.html"            class="text-cyan-400 border-b border-cyan-400/30 pb-0.5">Blog</a>
+        <a href="../services.html"      class="text-slate-400 hover:text-cyan-400 transition-colors border-b border-transparent hover:border-cyan-400/30 pb-0.5">Services</a>
+        <a href="../index.html#contact" class="text-slate-400 hover:text-cyan-400 transition-colors border-b border-transparent hover:border-cyan-400/30 pb-0.5">Contact</a>
+      </nav>
+      <button id="hamburger" aria-label="Open menu" class="md:hidden flex flex-col gap-1.5 p-1">
+        <span class="block w-5 h-px bg-slate-400"></span>
+        <span class="block w-5 h-px bg-slate-400"></span>
+        <span class="block w-5 h-px bg-slate-400"></span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden flex-col border-t border-slate-800/50 bg-[#0a0f1a]">
+      <a href="../index.html"         class="block px-4 py-3 text-sm text-slate-400 hover:text-cyan-400 border-b border-slate-800/30">Home</a>
+      <a href="../experience.html"    class="block px-4 py-3 text-sm text-slate-400 hover:text-cyan-400 border-b border-slate-800/30">Experience</a>
+      <a href="index.html"            class="block px-4 py-3 text-sm text-cyan-400 border-b border-slate-800/30">Blog</a>
+      <a href="../services.html"      class="block px-4 py-3 text-sm text-slate-400 hover:text-cyan-400 border-b border-slate-800/30">Services</a>
+      <a href="../index.html#contact" class="block px-4 py-3 text-sm text-slate-400 hover:text-cyan-400">Contact</a>
+    </div>
+  </header>
+
+  <!-- ── POST HEADER ── -->
+  <section class="py-16 px-4 pt-24 border-b border-slate-800/40">
+    <div class="max-w-3xl mx-auto fade-in">
+      <a href="index.html" class="text-xs text-slate-500 hover:text-cyan-400 transition-colors inline-flex items-center gap-1 mb-8">← Back to blog</a>
+      <div class="flex flex-wrap gap-2 mb-5">
+        <!-- ADD TAGS HERE -->
+        <span class="tag">Tag 1</span>
+        <span class="tag">Tag 2</span>
+      </div>
+      <h1 class="text-3xl md:text-4xl font-bold text-slate-100 mb-4 leading-tight">
+        POST TITLE
+      </h1>
+      <p class="text-slate-500 text-sm">DATE · Mahesh Harripaul</p>
+    </div>
+  </section>
+
+  <!-- ── STATS (optional — delete if not needed) ── -->
+  <section class="px-4 py-10 bg-[#0d1424] border-b border-slate-800/40">
+    <div class="max-w-3xl mx-auto">
+      <div class="stat-row">
+        <div class="stat"><div class="stat-num">0</div><div class="stat-label">Stat label</div></div>
+        <div class="stat"><div class="stat-num">0</div><div class="stat-label">Stat label</div></div>
+        <div class="stat"><div class="stat-num">0</div><div class="stat-label">Stat label</div></div>
+      </div>
+      <p class="text-xs text-slate-600 text-center">Environment details here</p>
+    </div>
+  </section>
+
+  <!-- ── POST CONTENT ── -->
+  <article class="py-16 px-4">
+    <div class="max-w-3xl mx-auto prose">
+
+      <!-- WRITE YOUR POST CONTENT HERE -->
+      <!-- Use <h2> for main sections -->
+      <!-- Use <h3> for sub-sections -->
+      <!-- Use <pre><code> for code blocks -->
+      <!-- Use <ul><li> for lists -->
+      <!-- Use <code> inline for field names, commands, rule IDs -->
+
+      <p>Opening paragraph — what you built, what this post covers.</p>
+
+      <h2>Section heading</h2>
+      <p>Body text here.</p>
+
+      <pre><code>code block here</code></pre>
+
+    </div>
+  </article>
+
+  <!-- ── BACK ── -->
+  <section class="px-4 pb-20">
+    <div class="max-w-3xl mx-auto border-t border-slate-800/40 pt-10">
+      <a href="index.html" class="text-cyan-400 hover:text-cyan-300 text-sm inline-flex items-center gap-2 group">
+        <span class="group-hover:-translate-x-1 transition-transform">←</span>
+        <span>Back to all posts</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="py-10 px-4 bg-[#0a0f1a] border-t border-slate-800/50">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-600">
+      <span>Mahesh Harripaul · Detection & Security Automation Engineer</span>
+      <div class="flex gap-6">
+        <a href="../index.html"         class="hover:text-slate-400 transition-colors">Home</a>
+        <a href="../experience.html"    class="hover:text-slate-400 transition-colors">Experience</a>
+        <a href="../services.html"      class="hover:text-slate-400 transition-colors">Services</a>
+        <a href="../index.html#contact" class="hover:text-slate-400 transition-colors">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- REMEMBER: When you publish a new post -->
+  <!-- 1. Copy this file, rename to post-0X-short-title.html -->
+  <!-- 2. Update title, meta description, meta keywords -->
+  <!-- 3. Update tags, h1, date -->
+  <!-- 4. Write your content in the prose section -->
+  <!-- 5. Add a card to blog/index.html -->
+  <!-- 6. Add a card to the "Latest" section on index.html -->
+
+  <script>
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('mobile-menu').classList.toggle('open');
+    });
+  </script>
+</body>
+</html>
