@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Process Discovery — Building a Detection Rule for MITRE T1057 — Mahesh Harripaul</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+    html { scroll-behavior: smooth; }
+    .fade-in { animation: fadeIn 0.7s ease-out both; }
+    .tag { display:inline-block; padding:2px 10px; font-size:0.7rem; font-weight:500; border-radius:9999px; background:rgba(34,211,238,0.08); color:#22d3ee; border:1px solid rgba(34,211,238,0.2); }
+    .prose p { margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.8; }
+    .prose h2 { font-size: 1.2rem; font-weight: 600; color: #f1f5f9; margin: 2.5rem 0 0.75rem; padding-top: 0.5rem; border-top: 1px solid rgba(148,163,184,0.1); }
+    .prose h3 { font-size: 1rem; font-weight: 600; color: #e2e8f0; margin: 1.75rem 0 0.6rem; }
+    .prose ul { margin: 0 0 1.25rem 1.25rem; list-style: disc; color: #cbd5e1; line-height: 1.8; }
+    .prose ol { margin: 0 0 1.25rem 1.5rem; list-style: decimal; color: #cbd5e1; line-height: 1.8; }
+    .prose li { margin-bottom: 0.4rem; }
+    .prose code { font-family: 'Courier New', monospace; font-size: 0.82rem; background: rgba(148,163,184,0.1); color: #22d3ee; padding: 1px 6px; border-radius: 4px; }
+    .prose pre { background: #0d1424; border: 1px solid rgba(148,163,184,0.12); border-radius: 8px; padding: 1.25rem; margin: 1.5rem 0; overflow-x: auto; }
+    .prose pre code { background: none; padding: 0; color: #94a3b8; font-size: 0.78rem; line-height: 1.75; }
+    .prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.82rem; }
+    .prose th { text-align: left; padding: 8px 12px; border-bottom: 1px solid rgba(148,163,184,0.2); color: #64748b; font-weight: 500; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .prose td { padding: 9px 12px; border-bottom: 1px solid rgba(148,163,184,0.07); color: #94a3b8; vertical-align: top; }
+    .prose tr:last-child td { border-bottom: none; }
+    .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; }
+    .stat { background: #111827; border: 1px solid rgba(148,163,184,0.1); border-radius: 10px; padding: 0.9rem; text-align: center; }
+    .stat-num { font-size: 1.6rem; font-weight: 700; color: #22d3ee; }
+    .stat-label { font-size: 0.68rem; color: #64748b; margin-top: 3px; line-height: 1.3; }
+    #mobile-menu { display:none; }
+    #mobile-menu.open { display:flex; }
+  </style>
+</head>
+<body class="bg-[#0a0f1a] text-slate-100 antialiased">
+
+  <header class="sticky top-0 z-50 bg-[#0a0f1a]/95 backdrop-blur-sm border-b border-slate-800/50">
+    <div class="max-w-6xl mx-auto px-4 py-5 flex justify-between items-center">
+      <a href="../index.html" class="block">
+        <span class="text-lg font-bold text-slate-100">Mahesh Harripaul</span>
+        <span class="hidden md:block text-xs text-slate-500 mt-0.5">Detection & Security Automation Engineer</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="../index.html"         class="text-slate-400 hover:text-cyan-400 transition-colors pb-0.5">Home</a>
+        <a href="../experience.html"    class="text-slate-400 hover:text-cyan-400 transition-colors pb-0.5">Experience</a>
+        <a href="index.html"            class="text-cyan-400 border-b border-cyan-400/30 pb-0.5">Blog</a>
+        <a href="../services.html"      class="text-slate-400 hover:text-cyan-400 transition-colors pb-0.5">Services</a>
+        <a href="../index.html#contact" class="text-slate-400 hover:text-cyan-400 transition-colors pb-0.5">Contact</a>
+      </nav>
+      <button id="hamburger" aria-label="Open menu" class="md:hidden flex flex-col gap-1.5 p-1">
+        <span class="block w-5 h-px bg-slate-400"></span>
+        <span class="block w-5 h-px bg-slate-400"></span>
+        <span class="block w-5 h-px bg-slate-400"></span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden flex-col border-t border-slate-800/50 bg-[#0a0f1a]">
+      <a href="../index.html"         class="block px-4 py-3 text-sm text-slate-400 border-b border-slate-800/30">Home</a>
+      <a href="../experience.html"    class="block px-4 py-3 text-sm text-slate-400 border-b border-slate-800/30">Experience</a>
+      <a href="index.html"            class="block px-4 py-3 text-sm text-cyan-400 border-b border-slate-800/30">Blog</a>
+      <a href="../services.html"      class="block px-4 py-3 text-sm text-slate-400 border-b border-slate-800/30">Services</a>
+      <a href="../index.html#contact" class="block px-4 py-3 text-sm text-slate-400">Contact</a>
+    </div>
+  </header>
+
+  <section class="py-16 px-4 pt-24 border-b border-slate-800/40">
+    <div class="max-w-3xl mx-auto fade-in">
+      <a href="index.html" class="text-xs text-slate-500 hover:text-cyan-400 transition-colors inline-flex items-center gap-1 mb-8">← Back to blog</a>
+      <div class="flex flex-wrap gap-2 mb-5"><span class="tag">T1057</span><span class="tag">Process Discovery</span><span class="tag">Wazuh</span><span class="tag">LOLBINs</span></div>
+      <h1 class="text-3xl md:text-4xl font-bold text-slate-100 mb-4 leading-tight">Process Discovery — Building a Detection Rule for MITRE T1057</h1>
+      <p class="text-slate-500 text-sm">June 27, 2026 · Mahesh Harripaul</p>
+    </div>
+  </section>
+
+  <section class="px-4 py-8 bg-[#0d1424] border-b border-slate-800/40">
+    <div class="max-w-3xl mx-auto">
+      <div class="stat-row">
+        <div class="stat"><div class="stat-num">4</div><div class="stat-label">Rules written</div></div>
+        <div class="stat"><div class="stat-num">10</div><div class="stat-label">Alert level</div></div>
+        <div class="stat"><div class="stat-num">3</div><div class="stat-label">Tools detected</div></div>
+      </div>
+      <p class="text-xs text-slate-600 text-center mt-3">T1057 · TA0007 Discovery · tasklist · wmic · Get-Process</p>
+    </div>
+  </section>
+
+  <article class="py-14 px-4">
+    <div class="max-w-3xl mx-auto prose">
+
+      <p><em>Part of my ongoing Wazuh detection engineering lab series</em></p>
+
+      <h2>What Is Process Discovery?</h2>
+      <p>Process discovery is an attacker asking the question: what's running on this machine? Think of it like walking into a room and turning on the lights — they're not doing anything yet, just looking around to understand what they're working with.</p>
+      <p>This technique is documented in MITRE ATT&amp;CK as T1057, under the Discovery tactic (TA0007). It typically happens after initial access but before lateral movement or impact.</p>
+      <p>Common tools attackers use on Windows:</p>
+      <ul>
+        <li><code>tasklist.exe</code> — native Windows command line tool</li>
+        <li><code>wmic process list</code> — Windows Management Instrumentation</li>
+        <li><code>Get-Process</code> or <code>ps</code> in PowerShell</li>
+      </ul>
+      <p>These are Living Off the Land Binaries (LOLBINs) — legitimate tools built into Windows, trusted by the OS, no download required.</p>
+
+      <h2>The Rule Structure</h2>
+      <p>Each tool an attacker uses is like flipping a different light switch. The goal isn't to wait until they've tried every switch — it's to raise the alarm the moment any single one gets flipped.</p>
+      <p>Rather than writing one rule per tool and ending up with three separate disconnected alerts, the structure here is two layers:</p>
+      <p><strong>Layer 1 — Individual detection rules:</strong> One rule per tool, each silently tagging the event with a shared group label. No high-level alert on their own.</p>
+      <p><strong>Layer 2 — Correlation rule:</strong> Listens for any of the individual rules firing. The moment one fires, a single level 10 alert is produced.</p>
+      <p>One tool used once = one clean, actionable alert, regardless of which tool the attacker chose.</p>
+
+      <h2>What Didn't Work</h2>
+      <p><strong>Frequency of 1 isn't valid.</strong> The initial correlation rule used <code>frequency=1</code>, which crashed the Wazuh manager on startup. Wazuh requires frequency to be a minimum of 2, and even then it means the group must fire that many additional times beyond the first hit — making it useless for detecting a single reconnaissance event. Frequency was removed entirely in favour of <code>if_sid</code> listening directly for the individual rule IDs.</p>
+      <p><strong>Get-Process isn't visible to Sysmon by default.</strong> Running <code>Get-Process</code> inside an existing PowerShell session doesn't create a new process, so Sysmon Event ID 1 never fires. It only becomes detectable when PowerShell is launched with it as a command line argument: <code>powershell.exe -Command Get-Process</code>.</p>
+      <p><strong>Wazuh's default rule fires first for PowerShell.</strong> When PowerShell spawns another PowerShell instance, Wazuh's own rule 92027 matches the event before any custom rule can. Rather than trying to override it, the PowerShell detection rule chains off 92027 as its parent and adds a <code>commandLine</code> check for <code>Get-Process</code>. Building on top of what already exists rather than fighting it.</p>
+      <p><strong>wmic is removed from Windows 11.</strong> The rule was written and would apply to Windows 10 endpoints, but couldn't be tested locally. Worth noting for production environments where multiple OS versions are in scope.</p>
+
+      <h2>How the Detection Works</h2>
+      <p>When <code>tasklist.exe</code> runs → Sysmon captures process creation → individual rule matches and tags the event → correlation rule fires immediately at level 10.</p>
+      <p>When <code>powershell.exe -Command Get-Process</code> runs → Sysmon captures it → Wazuh's default rule 92027 fires → custom rule chains off it and checks the command line → correlation rule fires immediately at level 10.</p>
+      <p>Either path, one alert. MITRE T1057 tagged, Discovery tactic mapped.</p>
+
+    </div>
+  </article>
+
+  <section class="px-4 pb-20">
+    <div class="max-w-3xl mx-auto border-t border-slate-800/40 pt-8 flex flex-wrap gap-4 justify-between">
+      <a href="post-09-dll-detection.html" class="text-cyan-400 hover:text-cyan-300 text-sm inline-flex items-center gap-2 group"><span class="group-hover:-translate-x-1 transition-transform">←</span><span>Previous: Shared Module Detection</span></a>
+      <a href="index.html" class="text-slate-500 hover:text-slate-400 text-sm">All posts →</a>
+    </div>
+  </section>
+
+  <footer class="py-10 px-4 bg-[#0a0f1a] border-t border-slate-800/50">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-600">
+      <span>Mahesh Harripaul · Detection & Security Automation Engineer</span>
+      <div class="flex gap-6">
+        <a href="../index.html"         class="hover:text-slate-400 transition-colors">Home</a>
+        <a href="../experience.html"    class="hover:text-slate-400 transition-colors">Experience</a>
+        <a href="../services.html"      class="hover:text-slate-400 transition-colors">Services</a>
+        <a href="../index.html#contact" class="hover:text-slate-400 transition-colors">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('mobile-menu').classList.toggle('open');
+    });
+  </script>
+</body>
+</html>
